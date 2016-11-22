@@ -12,7 +12,8 @@
 			<td><%= p.name %></td>
 			<td><%= p.allocated_money %></td>
 			<td><%= link_to 'Edit', edit_position_path(p) %> |</td>
-			<td> <%= link_to 'Show', position_path(p) %></td>
+			<td><%= link_to 'Show', position_path(p) %> |</td>
+			<td><%= link_to 'Delete', position_path(p), method: :delete, data: {confirm: "Delete position?"} %></td>
 		</tr>
 	<% end %>
 </table>

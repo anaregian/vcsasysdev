@@ -34,6 +34,13 @@ class PositionsController < ApplicationController
 		@position = Position.find(params[:id])
 	end
 
+	def destroy
+		@position = Position.find(params[:id])
+		@position.destroy
+		flash[:notice] = "Position was deleted"
+		redirect_to positions_path
+	end
+
 	private
 		def position_params
 			params.require(:position).permit(:name, :allocated_money)
