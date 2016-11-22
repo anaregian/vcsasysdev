@@ -1,2 +1,48 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+#logo 
+{
+	float: left;
+	font-size: 1.7em;
+	color: #ffffff;
+	letter-spacing: -1px;
+	font-weight: bold;
+}
+
+#logo:hover
+{
+	color: #fff;
+	text-decoration: none;
+}
+
+.center
+{
+	text-align: center;
+}
+
+.jumbotron
+{
+	background-color: #8C7070;
+	background-image: asset-url('vcsa_img.png');
+	background-size: cover;
+	height: 350px
+}
+
+body
+{
+	background-color: #ffffff;
+}
+
+footer
+{
+	margin-top: 45px;
+	padding-top: 5px;
+	border-top: 1px solid #777;
+	color: #777;
+}
+
+footer small
+{
+	float: left;
+}
