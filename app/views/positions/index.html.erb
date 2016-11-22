@@ -1,0 +1,18 @@
+<h1>Listing all positions</h1>
+
+<p><%= link_to "Create new position", new_position_path %></p>
+<table>
+	<tr>
+		<th>Position</th>
+		<th>Allocated Money</th>
+	</tr>
+
+	<% @positions.each do |p| %>
+		<tr>
+			<td><%= p.name %></td>
+			<td><%= p.allocated_money %></td>
+			<td><%= link_to 'Edit', edit_position_path(p) %> |</td>
+			<td> <%= link_to 'Show', position_path(p) %></td>
+		</tr>
+	<% end %>
+</table>

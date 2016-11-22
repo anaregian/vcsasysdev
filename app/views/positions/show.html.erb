@@ -1,0 +1,12 @@
+<h1>Showing selected postion</h1>
+
+<p>
+	Name: <%= @position.name %>
+</p>
+
+<p>
+	Allocated Money: <%= @position.allocated_money %>
+</p>
+
+<%= link_to "Edit this position", edit_position_path(@position) %>
+<%= link_to "Back to Position list", positions_path %>

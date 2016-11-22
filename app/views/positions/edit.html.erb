@@ -1,0 +1,25 @@
+<h1>Edit existing Position</h1>
+
+<% if @position.errors.any? %>
+<h2>Errors</h2>
+<ul>
+	<% @position.errors.full_messages.each do |msg| %>
+	<li><%= msg %></li>
+	<% end %>
+</ul>
+<% end %>
+<%= form_for @position do |p| %>
+<p>
+	<%= p.label :name %> <br/>
+	<%= p.text_field :name %>
+</p>
+<p>
+	<%= p.label :allocated_money %> <br/>
+	<%= p.number_field :allocated_money, step: :any %>
+</p>
+<p>
+	<%= p.submit %>
+</p>
+<% end %>
+
+<%= link_to "Back to Position list", positions_path %>
