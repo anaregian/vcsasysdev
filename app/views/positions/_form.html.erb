@@ -1,23 +1,30 @@
-<% if @position.errors.any? %>
-<h2>Errors</h2>
-<ul>
-	<% @position.errors.full_messages.each do |msg| %>
-	<li><%= msg %></li>
-	<% end %>
-</ul>
-<% end %>
-<%= form_for @position do |p| %>
-<p>
-	<%= p.label :name %> <br/>
-	<%= p.text_field :name %>
-</p>
-<p>
-	<%= p.label :allocated_money %> <br/>
-	<%= p.number_field :allocated_money, step: :any %>
-</p>
-<p>
-	<%= p.submit %>
-</p>
-<% end %>
+<%= render 'shared/errors', obj: @position %>
 
-<%= link_to "Back to Position list", positions_path %>
+<div class="row">
+	<div class="col-md-12">
+		<%= form_for(@position, :html => {class: "form-horizontal", role: "form"}) do |p| %>
+		<div class="form-group">
+			<div class="control-label col-md-2">
+				<%= p.label :name %> 
+			</div>
+			<div class="col-md-8">
+				<%= p.text_field :name, class: "form-control", placeholder: "Position Name", autofocus: true %>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="control-label col-md-2">
+				<%= p.label :allocated_money %>
+			</div>
+			<div class="col-md-8">
+				<%= p.number_field :allocated_money, class: "form-control", placeholder: "Allocated Money", step: :any %>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-4 col-md-10">
+				<%= p.submit class: "btn btn-primary btn-lg" %>
+				<%= link_to "Cancel", positions_path, class: "btn btn-danger btn-lg" %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>

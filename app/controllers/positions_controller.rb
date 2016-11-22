@@ -13,7 +13,7 @@ class PositionsController < ApplicationController
 
 	def update
 		if @position.update(position_params)
-			flash[:notice] = "Position updated"
+			flash[:success] = "Position updated"
 			redirect_to position_path(@position)
 		else
 			render 'edit'
@@ -23,7 +23,7 @@ class PositionsController < ApplicationController
 	def create
 		@position = Position.new(position_params)
 		if @position.save
-			flash[:notice] = "Position Created"
+			flash[:success] = "Position Created"
 			redirect_to position_path(@position)
 		else
 			render 'new'
@@ -36,7 +36,7 @@ class PositionsController < ApplicationController
 
 	def destroy
 		@position.destroy
-		flash[:notice] = "Position was deleted"
+		flash[:danger] = "Position was deleted"
 		redirect_to positions_path
 	end
 
