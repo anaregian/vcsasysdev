@@ -1,12 +1,14 @@
-<h1>Showing selected postion</h1>
+<h2 align="center"><%= @position.name %></h2>
+<div class="well col-md-8 col-md-offset-2">
+	<h4 class="center position-details">
+		<strong>Allocated Money <%= @position.allocated_money %></strong>
+	</h4>
+</div>
 
-<p>
-	Name: <%= @position.name %>
-</p>
-
-<p>
-	Allocated Money: <%= @position.allocated_money %>
-</p>
-
-<%= link_to "Edit this position", edit_position_path(@position) %>
-<%= link_to "Back to Position list", positions_path %>
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<%= link_to "Edit this position", edit_position_path(@position), class: "btn btn-xs btn-primary" %>
+		<%= link_to "Delete position", position_path(@position), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-xs btn-danger" %>
+		<%= link_to "View all positions", positions_path, class: "btn btn-xs btn-success" %>
+	</div>
+</div>
