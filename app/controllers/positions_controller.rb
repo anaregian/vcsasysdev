@@ -1,4 +1,5 @@
 class PositionsController < ApplicationController
+	before_action :set_position, only: [:edit, :update, :show, :destroy]
 	def index
 		@positions = Position.all
 	end
@@ -7,11 +8,10 @@ class PositionsController < ApplicationController
 	end
 
 	def edit
-		@position = Position.find(params[:id])
+
 	end
 
 	def update
-		@position = Position.find(params[:id])
 		if @position.update(position_params)
 			flash[:notice] = "Position updated"
 			redirect_to position_path(@position)
@@ -31,17 +31,19 @@ class PositionsController < ApplicationController
 	end
 
 	def show
-		@position = Position.find(params[:id])
+
 	end
 
 	def destroy
-		@position = Position.find(params[:id])
 		@position.destroy
 		flash[:notice] = "Position was deleted"
 		redirect_to positions_path
 	end
 
 	private
+		def set_position
+			@position = Position.find(params[:id])
+		end
 		def position_params
 			params.require(:position).permit(:name, :allocated_money)
 		end
