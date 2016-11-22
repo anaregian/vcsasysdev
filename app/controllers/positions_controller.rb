@@ -41,10 +41,10 @@ class PositionsController < ApplicationController
 	end
 
 	private
-		def set_position
-			@position = Position.find(params[:id])
-		end
-		def position_params
-			params.require(:position).permit(:name, :allocated_money)
-		end
+	def set_position
+		@position = Position.find(params[:id])
+	end
+	def position_params
+		params.require(:position).permit(:name, :allocated_money)
+	end
 end
