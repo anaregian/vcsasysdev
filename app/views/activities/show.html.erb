@@ -16,3 +16,22 @@
 		<%= link_to "View host", position_path(@activity.position), class: "btn btn-md btn-default btn-top" %>
 	</div>
 </div>
+
+<table class="table table-condensed table-striped bg-white">
+	<tr>
+		<th>Component</th>
+		<th>description</th>
+		<th>cost</th>
+		<th>Actions</th>
+	</tr>
+	<!--Goes through each row in the DB and displays them in the table-->
+	<% @activity.components.each do |c| %>
+	<tr>
+		<td><%= link_to c.component_name, component_path(c) %></td>
+		<td><%= c.description %></td>
+		<td><%= c.cost %></td>
+		<td><%= link_to 'Edit', edit_component_path(c), class: "btn btn-warning btn-xs" %>
+			<%= link_to 'Delete', component_path(c), method: :delete, data: {confirm: "Delete component?"}, class: "btn btn-danger btn-xs" %></td>
+	</tr>
+	<% end %>
+</table>
