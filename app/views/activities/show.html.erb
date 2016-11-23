@@ -2,7 +2,8 @@
 <h2 align="center"><%= @activity.activity_name %></h2>
 <div class="well col-md-8 col-md-offset-2">
 	<h4 class="center position-details">
-		<strong>Allocated Money <%= @activity.allocated_money %></strong>
+		<strong>Allocated Money: <%= @activity.allocated_money %></strong> <br/>
+		<strong>Host: <%= @activity.position.name %></strong>
 	</h4>
 </div>
 
