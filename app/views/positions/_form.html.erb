@@ -6,23 +6,17 @@
 	<div class="col-md-12">
 		<%= form_for(@position, :html => {class: "form-horizontal", role: "form"}) do |p| %>
 		<div class="form-group">
-			<div class="control-label col-md-2">
-				<%= p.label :name %> 
-			</div>
-			<div class="col-md-8">
+			<div class="col-md-8 col-md-offset-2">
 				<%= p.text_field :name, class: "form-control", placeholder: "Position Name", autofocus: true %>
 			</div>
 		</div>
 		<div class="form-group">
-			<div class="control-label col-md-2">
-				<%= p.label :allocated_money %>
-			</div>
-			<div class="col-md-8">
+			<div class="col-md-8 col-md-offset-2">
 				<%= p.number_field :allocated_money, class: "form-control", placeholder: "Allocated Money", step: :any %>
 			</div>
 		</div>
 		<div class="form-group">
-			<div class="col-md-offset-4 col-md-10">
+			<div class="col-md-offset-2 col-md-12">
 				<%= p.submit class: "btn btn-primary btn-lg" %>
 				<%= link_to "Cancel", positions_path, class: "btn btn-danger btn-lg" %>
 			</div>

@@ -1,0 +1,15 @@
+<!--Displays the show page for the selected activity-->
+<h2 align="center"><%= @activity.activity_name %></h2>
+<div class="well col-md-8 col-md-offset-2">
+	<h4 class="center position-details">
+		<strong>Allocated Money <%= @activity.allocated_money %></strong>
+	</h4>
+</div>
+
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		<%= link_to "Edit this activity", edit_activity_path(@activity), class: "btn btn-xs btn-primary" %>
+		<%= link_to "Delete activity", activity_path(@activity), method: :delete, data: {confirm: "Delete activity?"}, class: "btn btn-xs btn-danger" %>
+		<%= link_to "View all activities", activities_path, class: "btn btn-xs btn-success" %>
+	</div>
+</div>
