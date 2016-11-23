@@ -42,7 +42,6 @@ class ActivitiesController < ApplicationController
 
 	# Controls the show page of an individual activity
 	def show
-
 	end
 
 	# Deletes an activity

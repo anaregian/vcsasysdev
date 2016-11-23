@@ -6,9 +6,12 @@
 	</h4>
 </div>
 
-<div class="row">
-	<div class="col-md-12 col-md-offset-10">
-		<%= link_to "Add an activity", new_activity_path, class: "btn btn-s btn-primary btn-add" %>
+<div align="center" class="row">
+	<div class="col-md-12">
+		<%= link_to "Add an activity", new_activity_path, class: "btn btn-md btn-primary btn-top" %>
+		<%= link_to "Edit this position", edit_position_path(@position), class: "btn btn-md btn-warning btn-top" %>
+		<%= link_to "Delete position", position_path(@position), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-md btn-danger btn-top" %>
+		<%= link_to "View all positions", positions_path, class: "btn btn-md btn-info btn-top" %>
 	</div>
 </div>
 
@@ -23,20 +26,12 @@
 	<!--Goes through each row in the DB and displays them in the table-->
 	<% @position.activities.each do |a| %>
 	<tr>
-		<td><%= link_to a.activity_name, position_path(a) %></td>
+		<td><%= link_to a.activity_name, activity_path(a) %></td>
 		<td><%= a.allocated_money %></td>
 		<td></td>
 		<td></td>
-		<td><%= link_to 'Edit', edit_activity_path(a), class: "btn btn-success btn-xs" %>
+		<td><%= link_to 'Edit', edit_activity_path(a), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', activity_path(a), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>
 	<% end %>
 </table>
-
-<div class="row">
-	<div class="col-md-8 col-md-offset-2">
-		<%= link_to "Edit this position", edit_position_path(@position), class: "btn btn-xs btn-primary" %>
-		<%= link_to "Delete position", position_path(@position), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-xs btn-danger" %>
-		<%= link_to "View all positions", positions_path, class: "btn btn-xs btn-success" %>
-	</div>
-</div>
