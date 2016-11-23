@@ -42,13 +42,13 @@ class PositionsController < ApplicationController
 
 	# Controls the show page of an individual position
 	def show
-
+		@activities = Activity.all
 	end
 
 	# Deletes a position
 	def destroy
 		@position.destroy
-		flash[:danger] = "Position was deleted"
+		flash[:danger] = "The position and all its activities were deleted"
 		redirect_to positions_path
 	end
 

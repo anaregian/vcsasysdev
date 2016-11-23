@@ -1,6 +1,14 @@
+# Controller for the activities
+
 class ActivitiesController < ApplicationController
 	# Calls the set_activity method before executing edit, update, show or destroy actions
 	before_action :set_activity, only: [:edit, :update, :show, :destroy]
+
+	# Controls the positions list page
+	def index
+		@activities = Activity.all
+	end
+
 	# Controls the process of creating a new activity
 	def new
 		@activity = Activity.new
@@ -11,15 +19,37 @@ class ActivitiesController < ApplicationController
 		@activity = Activity.new(activity_params)
 		if @activity.save
 			flash[:success] = "Activity Created"
-			redirect_to position_path(@activity.position_id)
+			redirect_to activity_path(@activity)
 		else
 			render 'new'
+		end
+	end
+
+	# Controls the process of editing an existing activity
+	def edit
+
+	end
+
+	# Updates the edited position
+	def update
+		if @activity.update(activity_params)
+			flash[:success] = "Activity updated"
+			redirect_to activity_path(@activity)
+		else
+			render 'edit'
 		end
 	end
 
 	# Controls the show page of an individual activity
 	def show
 
+	end
+
+	# Deletes an activity
+	def destroy
+		@activity.destroy
+		flash[:danger] = "activity was deleted"
+		redirect_to activities_path
 	end
 
 	# Private methods
