@@ -7,12 +7,12 @@ class ComponentsController < ApplicationController
 	def index
 		@components = Component.all
 	end
-	# Controls the process of creating a new activity
+	# Controls the process of creating a new comopnent
 	def new
 		@component = Component.new
 	end
 
-	# Creates the new activity
+	# Creates the new component
 	def create
 		@component = Component.new(component_params)
 		if @component.save
@@ -20,6 +20,21 @@ class ComponentsController < ApplicationController
 			redirect_to component_path(@component)
 		else
 			render 'new'
+		end
+	end
+
+	# Controls the process of editing an existing component
+	def edit
+
+	end
+
+	# Updates the edited position
+	def update
+		if @component.update(component_params)
+			flash[:success] = "Component updated"
+			redirect_to component_path(@component)
+		else
+			render 'edit'
 		end
 	end
 
