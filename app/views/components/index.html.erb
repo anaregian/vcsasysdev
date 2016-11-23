@@ -1,0 +1,30 @@
+<!--Displays the index page for the positions-->
+<h1 align="center">Listing all components</h1>
+
+<div align="center" class="row">
+	<div class="col-md-12">
+		<%= link_to "Create new component", new_component_path, class: "btn btn-s btn-primary btn-top" %>
+		<%= link_to "View all activities", activities_path, class: "btn btn-s btn-info btn-top" %>
+		<%= link_to "View all positions", positions_path, class: "btn btn-s btn-info btn-top" %>
+	</div>
+</div>
+<table class="table table-condensed table-striped bg-white">
+	<tr>
+		<th>Component</th>
+		<th>description</th>
+		<th>cost</th>
+		<th>activity</th>
+		<th>Actions</th>
+	</tr>
+	<!--Goes through each row in the DB and displays them in the table-->
+	<% @components.each do |c| %>
+	<tr>
+		<td><%= link_to c.component_name, component_path(c) %></td>
+		<td><%= c.description %></td>
+		<td><%= c.cost %></td>
+		<td><%= c.activity.activity_name %></td>
+		<td><%= link_to 'Edit', edit_component_path(c), class: "btn btn-warning btn-xs" %>
+			<%= link_to 'Delete', component_path(c), method: :delete, data: {confirm: "Delete component?"}, class: "btn btn-danger btn-xs" %></td>
+	</tr>
+	<% end %>
+</table>

@@ -9,7 +9,7 @@
 
 <div align="center" class="row">
 	<div class="col-md-12">
-		<%= link_to "Add a component", edit_activity_path(@activity), class: "btn btn-md btn-success btn-top" %>
+		<%= link_to "Add a component", new_component_path, class: "btn btn-md btn-success btn-top" %>
 		<%= link_to "Edit this activity", edit_activity_path(@activity), class: "btn btn-md btn-warning btn-top" %>
 		<%= link_to "Delete activity", activity_path(@activity), method: :delete, data: {confirm: "Delete activity?"}, class: "btn btn-md btn-danger btn-top" %>
 		<%= link_to "View all activities", activities_path, class: "btn btn-md btn-info btn-top" %>

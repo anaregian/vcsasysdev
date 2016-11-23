@@ -2,6 +2,8 @@
 class Activity < ActiveRecord::Base
 	# One to many association with positions
 	belongs_to :position
+	# One to many association with component
+	has_many :components, :dependent => :destroy
 	# Validates the presence and the length of the name colummn
 	validates :activity_name, presence: true, length: {minimum: 2, maximum: 25}
 	# Validates the presence and the numericality of the allocated_money column

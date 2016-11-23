@@ -24,7 +24,7 @@
 		<td></td>
 		<td></td>
 		<td><%= a.position.name %></td>
-		<td><%= link_to 'Edit', edit_activity_path(a), class: "btn btn-success btn-xs" %>
+		<td><%= link_to 'Edit', edit_activity_path(a), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', activity_path(a), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>
 	<% end %>
