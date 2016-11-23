@@ -3,7 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sysdevvcsa</title>
+	<title>V.C.S.A.</title>
+	<%= favicon_link_tag 'favicon.ico' %>
 	<%= csrf_meta_tags %>
 
 	<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,13 +14,14 @@
 <body>
 	<!--Renders the navigation partial-->
 	<%= render 'layouts/navigation' %>
-	<!--Renders the messages partial (if applicable)-->
-	<%= render 'layouts/messages' %>
 	<div class="container">
-	<!--Displays the appropriate view-->
-	<%= yield %>
+		<!--Renders the messages partial (if applicable)-->
+		<%= render 'layouts/messages' %>
+		<!--Displays the appropriate view-->
+		<%= yield %>
 	</div>
 	<!--Renders the footer-->
 	<%= render 'layouts/footer' %>
 </body>
 </html>
+

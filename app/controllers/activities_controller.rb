@@ -47,7 +47,7 @@ class ActivitiesController < ApplicationController
 	# Deletes an activity
 	def destroy
 		@activity.destroy
-		flash[:danger] = "activity was deleted"
+		flash[:danger] = "The activity and all its components were deleted"
 		redirect_to activities_path
 	end
 

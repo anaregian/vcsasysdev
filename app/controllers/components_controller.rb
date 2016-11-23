@@ -42,6 +42,13 @@ class ComponentsController < ApplicationController
 
 	end
 
+	# Deletes a component
+	def destroy
+		@component.destroy
+		flash[:danger] = "component was deleted"
+		redirect_to components_path
+	end
+
 	# Private methods
 	private
 	# Sets the component variable to the selected component
