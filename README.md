@@ -1,24 +1,25 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Add Positions table DONE
+* Enable CRUD for Positions DONE
+* Create views for Positions DONE
 
-Things you may want to cover:
+* Add Activities table DONE
+* Enable CRUD for Activities DONE
+* Create views for Activities DONE
 
-* Ruby version
+* Add Components table DONE
+* Enable CRUD for Components DONE
+* Create views for Components DONE
 
-* System dependencies
+* Add Transactions table DONE**
+* Enable CRUD for Transactions DONE**
+* Create views for Transactions DONE**
 
-* Configuration
+* Add Users table
+* Enable CRUD for Users
+* Create views for Users
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Add login functionality
+* Add search functionality
+* Add sorting functionality
