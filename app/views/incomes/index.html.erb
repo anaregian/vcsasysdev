@@ -9,17 +9,15 @@
 </div>
 <table class="table table-condensed table-striped bg-white">
 	<tr>
-		<th>Income</th>
-		<th>Amount</th>
 		<th>Date</th>
+		<th>Amount</th>
 		<th>Actions</th>
 	</tr>
 	<!--Goes through each row in the DB and displays them in the table-->
 	<% @incomes.each do |i| %>
 	<tr>
-		<td><%= link_to i.id, income_path(i) %></td>
+		<td><%= link_to i.date.to_formatted_s(:long), income_path(i) %></td>
 		<td><%= i.amount %></td>
-		<td><%= i.received_at.to_formatted_s(:long) %></td>
 		<td><%= link_to 'Edit', edit_income_path(i), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', income_path(i), method: :delete, data: {confirm: "Delete income?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>

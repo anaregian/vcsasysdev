@@ -20,7 +20,7 @@
 	<tr>
 		<td><%= link_to c.component_name, component_path(c) %></td>
 		<td><%= c.cost %></td>
-		<td><%= c.activity.activity_name %></td>
+		<td><%= link_to c.activity.activity_name, activity_path(c.activity) %></td>
 		<td><%= link_to 'Edit', edit_component_path(c), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', component_path(c), method: :delete, data: {confirm: "Delete component?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>

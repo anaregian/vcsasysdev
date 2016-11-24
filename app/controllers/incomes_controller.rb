@@ -54,6 +54,6 @@ class IncomesController < ApplicationController
 
 	# Assigns the parameters entered while creating or editing a income
 	def income_params
-		params.require(:income).permit(:description, :amount, :received_at)
+		params.require(:income).permit(:description, :amount, :date)
 	end
 end
