@@ -4,6 +4,10 @@
 	<h4 class="center position-details">
 		<strong>Cost: <%= @component.cost %></strong> <br/>
 		<strong>Part of: <%= @component.activity.activity_name %></strong>
+		<% if @component.description != "" %>
+		 <br/>
+		<small><%= @component.description %></small>
+		<% end %>
 	</h4>
 </div>
 
