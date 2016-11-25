@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+	before_action :set_user, only: [:edit, :update, :show, :destroy]
 	def new
 		@user = User.new
 	end
@@ -11,6 +12,20 @@ class UsersController < ApplicationController
 			redirect_to root_path
 		else
 			render 'new'
+		end
+	end
+
+	def edit
+
+	end
+
+	# Updates the edited user
+	def update
+		if @user.update(user_params)
+			flash[:success] = "user updated"
+			redirect_to root_path
+		else
+			render 'edit'
 		end
 	end
 
