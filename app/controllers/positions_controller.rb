@@ -3,6 +3,7 @@
 class PositionsController < ApplicationController
 	# Calls the set_position method before executing edit, update, show or destroy actions
 	before_action :set_position, only: [:edit, :update, :show, :destroy]
+	before_action :require_user
 
 	# Controls the positions list page
 	def index

@@ -3,6 +3,7 @@
 class ActivitiesController < ApplicationController
 	# Calls the set_activity method before executing edit, update, show or destroy actions
 	before_action :set_activity, only: [:edit, :update, :show, :destroy]
+	before_action :require_user
 
 	# Controls the positions list page
 	def index
