@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			flash[:success] = "sign up successful"
-			redirect_to root_path
+			redirect_to user_path(@user)
 		else
 			render 'new'
 		end
@@ -23,12 +23,16 @@ class UsersController < ApplicationController
 	def update
 		if @user.update(user_params)
 			flash[:success] = "user updated"
-			redirect_to root_path
+			redirect_to user_path(@user)
 		else
 			render 'edit'
 		end
 	end
 
+	# Controls the show page of an individual position
+	def show
+
+	end
 	# Private methods
 	private
 
