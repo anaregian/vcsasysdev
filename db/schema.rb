@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161124221538) do
+ActiveRecord::Schema.define(version: 20161125153613) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "activity_name"
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 20161124221538) do
     t.decimal  "allocated_money"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "username"
+    t.string   "fname"
+    t.string   "lname"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
