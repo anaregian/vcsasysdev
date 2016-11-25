@@ -11,5 +11,8 @@ Rails.application.routes.draw do
 	# Initializes all the routes for incomes
 	resources :incomes
 
+	get 'signup', to: 'users#new'
+	resources :users, except: [:new]
+
   	# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
