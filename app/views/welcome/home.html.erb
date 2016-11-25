@@ -2,13 +2,13 @@
 <div class="center jumbotron">
 </div>
 
+
 <div class="row center">
 	<div class="col-md-12">
-		<%= link_to "Budgets", positions_path, class: "btn btn-danger btn-lg"%>
-		<%= link_to "Budgets", positions_path, class: "btn btn-danger btn-lg"%>
-		<%= link_to "Budgets", positions_path, class: "btn btn-danger btn-lg"%>
-		<%= link_to "Budgets", positions_path, class: "btn btn-danger btn-lg"%>
-		<%= link_to "Budgets", positions_path, class: "btn btn-danger btn-lg"%>
-		<%= link_to "Budgets", positions_path, class: "btn btn-danger btn-lg"%>
+	<% if logged_in? %>
+		<%= link_to "Budgets", positions_path, class: "btn btn-block btn-danger btn-lg"%>
+		<% else %>
+		<%= link_to "Log in", login_path, class: "btn btn-block btn-danger btn-lg" %>
+		<% end %>
 	</div>
 </div>
