@@ -5,12 +5,17 @@
 	<div class="row">
 		<div class="well col-md-4 center">
 			<li class="user-name"><h3><%= u.fname %> <%= u.lname %></h3></li>
+			<% if u.admin? %>
+			<h4>Admin</h4>
+			<% end %>
+			<% if logged_in? && (current_user == u || current_user.admin?) %>
 			<div align="center" class="row">
 				<div class="col-md-12">
 					<%= link_to "Edit", edit_user_path(u), class: "btn btn-md btn-warning btn-top" %>
-					<%= link_to "Delete", user_path(u), method: :delete, data: {confirm: "Delete component?"}, class: "btn btn-md btn-danger btn-top" %>
+					<%= link_to "Delete", user_path(u), method: :delete, data: {confirm: "Delete member?"}, class: "btn btn-md btn-danger btn-top" %>
 				</div>
 			</div>
+			<% end %>
 		</div>
 	</div>
 </ul>

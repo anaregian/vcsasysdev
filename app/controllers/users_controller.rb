@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
 	before_action :set_user, only: [:edit, :update, :show, :destroy]
 	before_action :require_user, except: [:new, :create]
+	before_action :require_same_user, only: [:edit, :update, :destroy]
 
 	def index
 		@users = User.all		
@@ -51,5 +52,11 @@ class UsersController < ApplicationController
 	# Assigns the parameters entered while creating or editing a user
 	def user_params
 		params.require(:user).permit(:username, :fname, :lname, :email, :password, :admin)
+	end
+
+	def require_same_user
+		if current_user != @user
+			flash[:danger] = "You cannot edit or delete other people's accounts"
+		end
 	end
 end
