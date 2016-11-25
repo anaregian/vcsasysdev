@@ -1,4 +1,5 @@
 # README
+# This file determines what is needed to accomplish the project
 
 * Add Positions table DONE
 
