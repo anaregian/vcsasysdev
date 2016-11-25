@@ -36,4 +36,6 @@
 
 * Add sorting functionality
 
+* Add printing functionality
+
 ** Only Income is done, Not sure how to implement spendings portion... Consult Emerson
