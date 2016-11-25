@@ -50,6 +50,6 @@ class UsersController < ApplicationController
 
 	# Assigns the parameters entered while creating or editing a user
 	def user_params
-		params.require(:user).permit(:username, :fname, :lname, :email, :password)
+		params.require(:user).permit(:username, :fname, :lname, :email, :password, :admin)
 	end
 end
