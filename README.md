@@ -25,18 +25,20 @@
 
 * Create views for Transactions DONE**
 
-* Add Users table
+* Add Users table DONE
 
-* Enable CRUD for Users
+* Enable CRUD for Users DONE
 
-* Create views for Users
+* Create views for Users DONE
 
-* Add login functionality
+* Add login functionality DONE
 
 * Add search functionality
 
 * Add sorting functionality
 
 * Add printing functionality
+
+* Add The logic
 
 ** Only Income is done, Not sure how to implement spendings portion... Consult Emerson
