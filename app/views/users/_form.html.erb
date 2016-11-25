@@ -30,7 +30,13 @@
 				<%= p.password_field :password, class: "form-control", placeholder: "Password" %>
 			</div>
 		</div>
-		<%= p.check_box :admin %>
+		<% if @user.admin? %>
+		<div class="form-group">
+			<div class="col-md-8 col-md-offset-2">
+			<label>Admin<%= p.check_box :admin, class: "form-control checkbox", placeholder: "admin" %></label>
+			</div>
+		</div>
+		<% end %>
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-12">
 				<%= p.submit(@user.new_record? ? "Sign up" : "Update account", class: "btn btn-primary btn-lg") %>

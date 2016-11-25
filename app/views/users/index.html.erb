@@ -1,9 +1,9 @@
 <h1 align="center">All V.C.S.A. Members</h1>
 
 <% @users.each do |u| %>
-<ul class="users-listing">
-	<div class="row">
-		<div class="well col-md-4 center">
+<ul class="users-listing center">
+	<div class="row center">
+		<div class="well col-md-12 center">
 			<li class="user-name"><h3><%= u.fname %> <%= u.lname %></h3></li>
 			<% if u.admin? %>
 			<h4>Admin</h4>
