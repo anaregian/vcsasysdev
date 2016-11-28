@@ -39,6 +39,6 @@
 
 * Add printing functionality
 
-* Add The logic
+* Add The logic DONE
 
 ** Only Income is done, Not sure how to implement spendings portion... Consult Emerson

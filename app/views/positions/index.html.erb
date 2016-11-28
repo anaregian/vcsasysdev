@@ -1,7 +1,19 @@
 <!--Displays the index page for the positions-->
-<h1 align="center">Listing all positions</h1>
+<div class="well row">
+	<h4 class="col-md-6 center position-details">
+		<strong>Esitmated Budget of the Year: <%= number_to_currency(get_estimate) %> <%= get_appropriate_link %></strong> <br/>
+		<strong>Amount Spent: <%= number_to_currency(get_total_amount_spent) %></strong> <br/>
+		<strong>Amount Left: <%= number_to_currency(get_estimate_amount_left) %></strong> <br/>
+		<strong>Progression of the Year: <%= '%.2f' % get_progression() %>%</strong>
+	</h4>
+	<h4 class="col-md-6 center position-details">
+		<strong>Budget of the Year: <%= number_to_currency(get_total_budget(@incomes)) %></strong> <br/>
+		<strong>Amount Left: <%= number_to_currency(get_total_amount_left(@incomes)) %></strong>
+	</h4>
+</div>
+<h3 align="center">Listing all positions</h3>
 
-<div align="center" class="row">
+<div class="row center">
 	<div class="col-md-12">
 		<%= link_to "Create new position", new_position_path, class: "btn btn-s btn-primary btn-top" %>
 	</div>
@@ -19,10 +31,10 @@
 	<% @positions.each do |p| %>
 	<tr>
 		<td><%= link_to p.name, position_path(p) %></td>
-		<td><%= p.allocated_money %></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td><%= number_to_currency(p.allocated_money) %></td>
+		<td><%= number_to_currency(get_position_amount_spent(p)) %></td>
+		<td><%= number_to_currency(get_position_amount_left(p)) %></td>
+		<td><%= '%.2f' % get_position_budget_progress(p) %>%</td>
 		<td><%= link_to 'Edit', edit_position_path(p), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', position_path(p), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>

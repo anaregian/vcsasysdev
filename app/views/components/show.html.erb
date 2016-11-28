@@ -2,7 +2,7 @@
 <h2 align="center"><%= @component.component_name %></h2>
 <div class="well col-md-8 col-md-offset-2">
 	<h4 class="center position-details">
-		<strong>Cost: <%= @component.cost %></strong> <br/>
+		<strong>Cost: <%= number_to_currency(@component.cost) %></strong> <br/>
 		<strong>Part of: <%= @component.activity.activity_name %></strong>
 		<% if @component.description != "" %>
 		 <br/>

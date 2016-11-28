@@ -2,7 +2,9 @@
 <h2 align="center"><%= @position.name %></h2>
 <div class="well col-md-8 col-md-offset-2">
 	<h4 class="center position-details">
-		<strong>Allocated Money: <%= @position.allocated_money %></strong>
+		<strong>Allocated Money: <%= number_to_currency(@position.allocated_money) %></strong> <br/>
+		<strong>Amount spent: <%= number_to_currency(get_position_amount_spent(@position)) %></strong> <br/>
+		<strong>Amount Left: <%= number_to_currency(get_position_amount_left(@position)) %></strong>
 	</h4>
 </div>
 
@@ -27,9 +29,9 @@
 	<% @position.activities.each do |a| %>
 	<tr>
 		<td><%= link_to a.activity_name, activity_path(a) %></td>
-		<td><%= a.allocated_money %></td>
-		<td></td>
-		<td></td>
+		<td><%= number_to_currency(a.allocated_money) %></td>
+		<td><%= number_to_currency(get_activity_amount_spent(a)) %></td>
+		<td><%= number_to_currency(get_activity_amount_left(a)) %></td>
 		<td><%= link_to 'Edit', edit_activity_path(a), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', activity_path(a), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>

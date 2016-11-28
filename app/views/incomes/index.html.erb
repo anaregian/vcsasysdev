@@ -17,7 +17,7 @@
 	<% @incomes.each do |i| %>
 	<tr>
 		<td><%= link_to i.date.to_formatted_s(:long), income_path(i) %></td>
-		<td><%= i.amount %></td>
+		<td><%= number_to_currency(i.amount) %></td>
 		<td><%= link_to 'Edit', edit_income_path(i), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', income_path(i), method: :delete, data: {confirm: "Delete income?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>

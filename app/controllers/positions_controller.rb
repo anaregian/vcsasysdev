@@ -8,6 +8,8 @@ class PositionsController < ApplicationController
 	# Controls the positions list page
 	def index
 		@positions = Position.all
+		@incomes = Income.all
+		@estimation = Estimation.first
 	end
 
 	# Controls the process of creating a new position

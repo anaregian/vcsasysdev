@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 	resources :components
 	# Initializes all the routes for incomes
 	resources :incomes
+	# Initializes all the routes for estimations
+	resources :estimations
 
 	# Initializes all the routes for users
 	get 'signup', to: 'users#new'

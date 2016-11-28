@@ -2,8 +2,10 @@
 <h2 align="center"><%= @activity.activity_name %></h2>
 <div class="well col-md-8 col-md-offset-2">
 	<h4 class="center position-details">
-		<strong>Allocated Money: <%= @activity.allocated_money %></strong> <br/>
-		<strong>Host: <%= @activity.position.name %></strong>
+		<strong>Host: <%= @activity.position.name %></strong><br/>
+		<strong>Allocated Money: <%= number_to_currency(@activity.allocated_money) %></strong> <br/>
+		<strong>Amount Spent: <%= number_to_currency(get_activity_amount_spent(@activity)) %></strong> <br/>
+		<strong>Amount Left: <%= number_to_currency(get_activity_amount_left(@activity)) %></strong> <br/>
 	</h4>
 </div>
 
@@ -28,8 +30,8 @@
 	<% @activity.components.each do |c| %>
 	<tr>
 		<td><%= link_to c.component_name, component_path(c) %></td>
-		<td><%= c.description %></td>
-		<td><%= c.cost %></td>
+		<td><%= truncate(c.description, length: 10) %></td>
+		<td><%= number_to_currency(c.cost) %></td>
 		<td><%= link_to 'Edit', edit_component_path(c), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', component_path(c), method: :delete, data: {confirm: "Delete component?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>

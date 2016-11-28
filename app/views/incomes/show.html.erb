@@ -1,7 +1,7 @@
 <!--Displays the show page for the selected activity-->
 <div class="well col-md-8 col-md-offset-2">
 	<h4 class="center position-details">
-		<strong>Amount: <%= @income.amount %></strong> <br/>
+		<strong>Amount: <%= number_to_currency(@income.amount) %></strong> <br/>
 		<strong>Received on: <%= @income.date.to_formatted_s(:long) %></strong>
 		<% if @income.description != "" %>
 		 <br/>

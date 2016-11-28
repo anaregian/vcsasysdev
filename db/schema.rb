@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161125185542) do
+ActiveRecord::Schema.define(version: 20161128025337) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "activity_name"
@@ -25,6 +25,12 @@ ActiveRecord::Schema.define(version: 20161125185542) do
     t.string   "description"
     t.decimal  "cost"
     t.integer  "activity_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "estimations", force: :cascade do |t|
+    t.decimal  "estimate"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
