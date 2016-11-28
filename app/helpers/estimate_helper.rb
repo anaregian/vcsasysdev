@@ -1,6 +1,6 @@
 module EstimateHelper
 	def get_estimate
-		if Estimation.first.estimate == nil
+		if Estimation.first == nil
 			return nil
 		else
 			return Estimation.first.estimate
@@ -16,6 +16,10 @@ module EstimateHelper
 	end
 
 	def get_estimate_amount_left
-		return get_estimate - get_total_amount_spent
+		if get_estimate == nil
+			return 0
+		else
+			return get_estimate - get_total_amount_spent
+		end
 	end
 end
