@@ -30,7 +30,7 @@
 	<% @activity.components.each do |c| %>
 	<tr>
 		<td><%= link_to c.component_name, component_path(c) %></td>
-		<td><%= truncate(c.description, length: 10) %></td>
+		<td><%= truncate(c.description, length: 30) %></td>
 		<td><%= number_to_currency(c.cost) %></td>
 		<td><%= link_to 'Edit', edit_component_path(c), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', component_path(c), method: :delete, data: {confirm: "Delete component?"}, class: "btn btn-danger btn-xs" %></td>

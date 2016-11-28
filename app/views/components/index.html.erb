@@ -11,6 +11,7 @@
 <table class="table table-condensed table-striped bg-white">
 	<tr>
 		<th>Component</th>
+		<th>Description</th>
 		<th>Cost</th>
 		<th>Activity</th>
 		<th>Actions</th>
@@ -19,6 +20,7 @@
 	<% @components.each do |c| %>
 	<tr>
 		<td><%= link_to c.component_name, component_path(c) %></td>
+		<td><%= truncate(c.description, length: 30) %></td>
 		<td><%= number_to_currency(c.cost) %></td>
 		<td><%= link_to c.activity.activity_name, activity_path(c.activity) %></td>
 		<td><%= link_to 'Edit', edit_component_path(c), class: "btn btn-warning btn-xs" %>
