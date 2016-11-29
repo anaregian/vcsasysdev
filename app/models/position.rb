@@ -8,10 +8,18 @@ class Position < ActiveRecord::Base
 	validates :allocated_money, presence: true, numericality: {greater_than_or_equal_to: 0}
 
 	def self.search_pos(search)
-		if search
-			where(["name LIKE ?", "%#{search}%"])
+		if connection.adapter_name == 'PostgreSQL'
+			if search
+				where(["name ILIKE ?", "%#{search}%"])
+			else
+				all
+			end
 		else
-			all
+			if search
+				where(["name LIKE ?", "%#{search}%"])
+			else
+				all
+			end
 		end
 	end
 end

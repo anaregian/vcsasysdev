@@ -11,11 +11,19 @@ class Activity < ActiveRecord::Base
 	# Ensures the presence of the position_id in each activity
 	validates :position_id, presence: true
 
-	def self.search_act(search)
-		if search
-			where(["activity_name LIKE ?", "%#{search}%"])
+	def self.search_pos(search)
+		if connection.adapter_name == 'PostgreSQL'
+			if search
+				where(["activity_name ILIKE ?", "%#{search}%"])
+			else
+				all
+			end
 		else
-			all
+			if search
+				where(["activity_name LIKE ?", "%#{search}%"])
+			else
+				all
+			end
 		end
 	end
 end
