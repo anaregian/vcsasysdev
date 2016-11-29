@@ -37,7 +37,7 @@
 
 * Add sorting functionality
 
-* Add printing functionality
+* Add printing functionality DONE
 
 * Add The logic DONE
 
