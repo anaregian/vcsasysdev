@@ -1,7 +1,7 @@
 <!--Displays the index page for the positions-->
-<h1 align="center">Listing all Activities</h1>
+<h1 align="center">All Activities</h1>
 
-<div align="center" class="row">
+<div class="row center hidden-print">
 	<div class="col-md-12">
 		<%= link_to "Create new activity", new_activity_path, class: "btn btn-s btn-primary btn-top" %>
 		<%= link_to "View all positions", positions_path, class: "btn btn-s btn-info btn-top" %>
@@ -14,7 +14,7 @@
 		<th>Amount Spent</th>
 		<th>Amount Left</th>
 		<th>Host</th>
-		<th>Actions</th>
+		<th class="hidden-print">Actions</th>
 	</tr>
 	<!--Goes through each row in the DB and displays them in the table-->
 	<% @activities.each do |a| %>
@@ -24,7 +24,7 @@
 		<td><%= number_to_currency(get_activity_amount_spent(a)) %></td>
 		<td><%= number_to_currency(get_activity_amount_left(a)) %></td>
 		<td><%= link_to a.position.name, position_path(a.position) %></td>
-		<td><%= link_to 'Edit', edit_activity_path(a), class: "btn btn-warning btn-xs" %>
+		<td class="hidden-print"><%= link_to 'Edit', edit_activity_path(a), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', activity_path(a), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>
 	<% end %>

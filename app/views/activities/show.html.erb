@@ -1,5 +1,5 @@
 <!--Displays the show page for the selected activity-->
-<h2 align="center"><%= @activity.activity_name %></h2>
+<h2 align="center">Components of <%= @activity.activity_name %></h2>
 <div class="well col-md-8 col-md-offset-2">
 	<h4 class="center position-details">
 		<strong>Host: <%= @activity.position.name %></strong><br/>
@@ -9,7 +9,7 @@
 	</h4>
 </div>
 
-<div align="center" class="row">
+<div class="row center hidden-print">
 	<div class="col-md-12">
 		<%= link_to "Add a component", new_component_path, class: "btn btn-md btn-primary btn-top" %>
 		<%= link_to "Edit this activity", edit_activity_path(@activity), class: "btn btn-md btn-warning btn-top" %>
@@ -22,9 +22,9 @@
 <table class="table table-condensed table-striped bg-white">
 	<tr>
 		<th>Component</th>
-		<th>description</th>
-		<th>cost</th>
-		<th>Actions</th>
+		<th>Description</th>
+		<th>Cost</th>
+		<th class="hidden-print">Actions</th>
 	</tr>
 	<!--Goes through each row in the DB and displays them in the table-->
 	<% @activity.components.each do |c| %>
@@ -32,7 +32,7 @@
 		<td><%= link_to c.component_name, component_path(c) %></td>
 		<td><%= truncate(c.description, length: 30) %></td>
 		<td><%= number_to_currency(c.cost) %></td>
-		<td><%= link_to 'Edit', edit_component_path(c), class: "btn btn-warning btn-xs" %>
+		<td class="hidden-print"><%= link_to 'Edit', edit_component_path(c), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', component_path(c), method: :delete, data: {confirm: "Delete component?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>
 	<% end %>

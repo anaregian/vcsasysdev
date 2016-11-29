@@ -37,6 +37,7 @@ body
 .position-details
 {
 	margin-top: 0;
+	margin-bottom: 0;
 }
 
 .btn-top
@@ -66,4 +67,11 @@ footer
 footer small
 {
 	float: left;
+}
+
+/* Don't print link hrefs */
+@media print {
+  a[href]:after {
+    content: none
+  }
 }

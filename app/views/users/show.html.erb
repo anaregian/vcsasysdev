@@ -6,6 +6,6 @@
 		<% if @user.admin? %>
 		<h4>Admin User</h4>
 		<% end %>
-		<%= link_to 'Edit Information', edit_user_path(@user), class: "btn btn-warning btn-md" %>
+		<%= link_to 'Edit Information', edit_user_path(@user), class: "btn btn-warning btn-md hidden-print" %>
 	</div>
 </div>
