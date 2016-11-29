@@ -1,5 +1,12 @@
 <h1 align="center">All V.C.S.A. Members</h1>
-
+<form class="col-md-12 form-inline btn-top">
+		<div class="form-group">
+			<%= form_tag users_path, :method => 'get' do %>
+			<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search members by name" %>
+			<%= submit_tag "Search", class: "btn btn-default btn-s" %>
+			<% end %>
+		</div>
+	</form>
 <% @users.each do |u| %>
 <ul class="users-listing center">
 	<div class="row center">

@@ -14,4 +14,20 @@ class User < ActiveRecord::Base
 		format: {with: VALID_EMAIL_REGEX}
 
 	has_secure_password
+
+	def self.search_user(search)
+		if connection.adapter_name == 'PostgreSQL'
+			if search
+				where(["fname || ' ' || lname ILIKE :s", :s => "%#{search}%"])
+			else
+				all
+			end
+		else
+			if search
+				where(["fname || ' ' || lname LIKE :s", :s => "%#{search}%"])
+			else
+				all
+			end
+		end
+	end
 end

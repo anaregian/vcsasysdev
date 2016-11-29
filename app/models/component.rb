@@ -8,7 +8,7 @@ class Component < ActiveRecord::Base
 	# Ensures the presence of the position_id in each activity
 	validates :activity_id, presence: true
 
-	def self.search_pos(search)
+	def self.search_comp(search)
 		if connection.adapter_name == 'PostgreSQL'
 			if search
 				where(["component_name ILIKE ?", "%#{search}%"])

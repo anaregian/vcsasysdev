@@ -10,7 +10,7 @@
 	<form class="col-md-12 form-inline btn-top">
 		<div class="form-group">
 			<%= form_tag components_path, :method => 'get' do %>
-			<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search components" %>
+			<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search components by name" %>
 			<%= submit_tag "Search", class: "btn btn-default btn-s" %>
 			<% end %>
 		</div>
