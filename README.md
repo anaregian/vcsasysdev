@@ -35,7 +35,7 @@
 
 * Add search functionality
 
-* Add sorting functionality
+* Add sorting functionality DONE
 
 * Add printing functionality DONE
 
