@@ -15,14 +15,14 @@
 		<%= link_to "Delete position", position_path(@position), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-md btn-danger btn-top" %>
 		<%= link_to "View all positions", positions_path, class: "btn btn-md btn-info btn-top" %>
 	</div>
-	<form class="col-md-12 form-inline btn-top">
+	<!-- <form class="col-md-12 form-inline btn-top">
 		<div class="form-group">
 			<%= form_tag position_path(@position), :method => 'get' do %>
 			<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search activities" %>
 			<%= submit_tag "Search", class: "btn btn-default btn-s" %>
 			<% end %>
 		</div>
-	</form>
+	</form> -->
 </div>
 
 <table class="table table-condensed table-striped bg-white sortable">
