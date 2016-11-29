@@ -33,7 +33,7 @@
 
 * Add login functionality DONE
 
-* Add search functionality
+* Add search functionality DONE***
 
 * Add sorting functionality DONE
 
@@ -42,3 +42,5 @@
 * Add The logic DONE
 
 ** Only Income is done, Not sure how to implement spendings portion... Consult Emerson
+
+*** Can only search by name on the index pages of Position, Activity and Component
