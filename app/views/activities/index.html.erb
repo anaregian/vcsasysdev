@@ -1,13 +1,21 @@
 <!--Displays the index page for the positions-->
 <h1 align="center">All Activities</h1>
 
-<div class="row center hidden-print">
-	<div class="col-md-12">
+<div class="row hidden-print">
+	<div class="col-md-12 center">
 		<%= link_to "Create new activity", new_activity_path, class: "btn btn-s btn-primary btn-top" %>
 		<%= link_to "View all positions", positions_path, class: "btn btn-s btn-info btn-top" %>
 	</div>
+	<form class="col-md-12 form-inline btn-top">
+		<div class="form-group">
+			<%= form_tag activities_path, :method => 'get' do %>
+			<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search activities" %>
+			<%= submit_tag "Search", class: "btn btn-default btn-s" %>
+			<% end %>
+		</div>
+	</form>
 </div>
-<table class="table table-condensed table-striped bg-white">
+<table class="table table-condensed table-striped bg-white sortable">
 	<tr>
 		<th>Activity</th>
 		<th>Allocated Money</th>

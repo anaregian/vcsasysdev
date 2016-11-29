@@ -6,7 +6,7 @@ class ComponentsController < ApplicationController
 
 	# Controls the component list page
 	def index
-		@components = Component.all
+		@components = Component.search_comp(params[:search])
 	end
 	# Controls the process of creating a new comopnent
 	def new

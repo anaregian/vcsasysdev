@@ -7,4 +7,12 @@ class Component < ActiveRecord::Base
 	validates :cost, presence: true, numericality: {greater_than_or_equal_to: 0}
 	# Ensures the presence of the position_id in each activity
 	validates :activity_id, presence: true
+
+	def self.search_comp(search)
+		if search
+			where(["component_name LIKE ?", "%#{search}%"])
+		else
+			all
+		end
+	end
 end

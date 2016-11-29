@@ -9,17 +9,25 @@
 	</h4>
 </div>
 
-<div class="row center hidden-print">
-	<div class="col-md-12">
+<div class="row hidden-print">
+	<div class="col-md-12 center">
 		<%= link_to "Add a component", new_component_path, class: "btn btn-md btn-primary btn-top" %>
 		<%= link_to "Edit this activity", edit_activity_path(@activity), class: "btn btn-md btn-warning btn-top" %>
 		<%= link_to "Delete activity", activity_path(@activity), method: :delete, data: {confirm: "Delete activity?"}, class: "btn btn-md btn-danger btn-top" %>
 		<%= link_to "View all activities", activities_path, class: "btn btn-md btn-info btn-top" %>
 		<%= link_to "View host", position_path(@activity.position), class: "btn btn-md btn-default btn-top" %>
 	</div>
+	<form class="col-md-12 form-inline btn-top">
+		<div class="form-group">
+			<%= form_tag activity_path(@activity), :method => 'get' do %>
+			<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search components" %>
+			<%= submit_tag "Search", class: "btn btn-default btn-s" %>
+			<% end %>
+		</div>
+	</form>
 </div>
 
-<table class="table table-condensed table-striped bg-white">
+<table class="table table-condensed table-striped bg-white sortable">
 	<tr>
 		<th>Component</th>
 		<th>Description</th>

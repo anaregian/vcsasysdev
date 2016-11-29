@@ -7,7 +7,7 @@ class PositionsController < ApplicationController
 
 	# Controls the positions list page
 	def index
-		@positions = Position.all
+		@positions = Position.search_pos(params[:search])
 		@incomes = Income.all
 		@estimation = Estimation.first
 	end

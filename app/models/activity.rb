@@ -10,4 +10,12 @@ class Activity < ActiveRecord::Base
 	validates :allocated_money, presence: true, numericality: {greater_than_or_equal_to: 0}
 	# Ensures the presence of the position_id in each activity
 	validates :position_id, presence: true
+
+	def self.search_act(search)
+		if search
+			where(["activity_name LIKE ?", "%#{search}%"])
+		else
+			all
+		end
+	end
 end

@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
 
 	# Controls the positions list page
 	def index
-		@activities = Activity.all
+		@activities = Activity.search_act(params[:search])
 	end
 
 	# Controls the process of creating a new activity
