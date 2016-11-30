@@ -34,6 +34,6 @@
 		<td><%= link_to a.position.name, position_path(a.position) %></td>
 		<td class="hidden-print"><%= link_to 'Edit', edit_activity_path(a), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', activity_path(a), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-danger btn-xs" %></td>
-	</tr>
+  </tr>
 	<% end %>
 </table>
