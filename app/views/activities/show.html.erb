@@ -7,6 +7,7 @@
 		<strong>Amount Spent: <%= number_to_currency(get_activity_amount_spent(@activity)) %></strong> <br/>
 		<strong>Amount Left: <%= number_to_currency(get_activity_amount_left(@activity)) %></strong> <br/>
 	</h4>
+  <div id="chartContainer" style="width:100%; height:150px;"></div>
 </div>
 
 <div class="row hidden-print">
@@ -45,3 +46,48 @@
 	</tr>
 	<% end %>
 </table>
+
+<!--Chart script-->
+<script>
+
+  $(function () {
+    Highcharts.chart('chartContainer', {
+      chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+      },
+      title: {
+        text: null
+      },
+      tooltip: false,
+      plotOptions: {
+        pie: {
+          allowPointSelect: false,
+          dataLabels: {
+            enabled: true,
+            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+            style: {
+              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+            }
+          }
+        }
+      },
+      series: [{
+        data: [{
+          name: 'Amount Left',
+          y: <%=get_activity_amount_left(@activity)%>,
+          selected: true
+        }, {
+          name: 'Amount Spent',
+          y: <%=get_activity_amount_spent(@activity)%>,
+          sliced: true,
+          selected: true
+        }]
+      }]
+    });
+  });
+
+
+</script>
