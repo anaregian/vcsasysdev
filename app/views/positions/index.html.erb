@@ -2,7 +2,7 @@
 <div class="well row">
   <div id="chartContainer" class="center pie-chart"></div>
 	<h4 class="col-md-6 center position-details">
-		<strong>Esitmated Budget of the Year: <%= number_to_currency(get_estimate) %></strong> <strong class="hidden-print"><%= get_appropriate_link %></strong> <br/>
+		<strong>Estimated Budget of the Year: <%= number_to_currency(get_estimate) %></strong> <strong class="hidden-print"><%= get_appropriate_link %></strong> <br/>
 		<strong>Amount Spent: <%= number_to_currency(get_total_amount_spent) %></strong> <br/>
 		<strong>Amount Left: <%= number_to_currency(get_estimate_amount_left) %></strong> <br/>
 		<strong>Progression of the Year: <%= '%.2f' % get_progression() %>%</strong>
