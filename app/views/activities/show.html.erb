@@ -59,117 +59,93 @@
 <script>
 
 
+  $(function () {
 
-    $(function () {
+    var gaugeOptions = {
 
-      var gaugeOptions = {
+      chart: {
+        type: 'solidgauge'
+      },
 
-        chart: {
-          type: 'solidgauge'
-        },
+      title: null,
 
-        title: null,
-
-        pane: {
-          center: ['50%', '85%'],
-          size: '140%',
-          startAngle: -90,
-          endAngle: 90,
-          background: {
-            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-            innerRadius: '60%',
-            outerRadius: '100%',
-            shape: 'arc'
-          }
-        },
-
-        tooltip: {
-          enabled: false
-        },
-
-        // the value axis
-        yAxis: {
-          stops: [
-            [0.1, '#55BF3B'], // green
-            [0.5, '#DDDF0D'], // yellow
-            [0.9, '#DF5353'] // red
-          ],
-          lineWidth: 0,
-          minorTickInterval: null,
-          tickAmount: 2,
-          title: {
-            y: -70
-          },
-          labels: {
-            y: 16
-          }
-        },
-
-        plotOptions: {
-          solidgauge: {
-            dataLabels: {
-              y: 5,
-              borderWidth: 0,
-              useHTML: true
-            }
-          }
+      pane: {
+        center: ['50%', '85%'],
+        size: '140%',
+        startAngle: -90,
+        endAngle: 90,
+        background: {
+          backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+          innerRadius: '60%',
+          outerRadius: '100%',
+          shape: 'arc'
         }
-      };
+      },
 
-      // The speed gauge
-      var chartSpeed = Highcharts.chart('chartContainer', Highcharts.merge(gaugeOptions, {
-        yAxis: {
-          min: 0,
-          max: 200,
-          title: {
-            text: 'Speed'
-          }
+      tooltip: {
+        enabled: false
+      },
+
+      // the value axis
+      yAxis: {
+        stops: [
+          [0.1, '#55BF3B'], // green
+          [0.5, '#DDDF0D'], // yellow
+          [0.9, '#DF5353'] // red
+        ],
+        lineWidth: 0,
+        minorTickInterval: null,
+        tickAmount: 2,
+        title: {
+          y: -70
         },
+        labels: {
+          y: 16
+        }
+      },
 
-        credits: {
-          enabled: false
-        },
-
-        series: [{
-          name: 'Speed',
-          data: [80],
+      plotOptions: {
+        solidgauge: {
           dataLabels: {
-            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-            '<span style="font-size:12px;color:silver">km/h</span></div>'
-          },
-          tooltip: {
-            valueSuffix: ' km/h'
+            y: 5,
+            borderWidth: 0,
+            useHTML: true
           }
-        }]
-
-      }));
-
-
-
-      // Bring life to the dials
-      setInterval(function () {
-        // Speed
-        var point,
-            newVal,
-            inc;
-
-        if (chartSpeed) {
-          point = chartSpeed.series[0].points[0];
-          inc = Math.round((Math.random() - 0.5) * 100);
-          newVal = point.y + inc;
-
-          if (newVal < 0 || newVal > 200) {
-            newVal = point.y - inc;
-          }
-
-          point.update(newVal);
         }
+      }
+    };
 
+    // The speed gauge
+    var chartSpeed = Highcharts.chart('chartContainer', Highcharts.merge(gaugeOptions, {
+      yAxis: {
+        min: <%=get_activity_amount_spent(@activity) > 0 ? 0: get_activity_amount_spent(@activity) %>,
+        max: <%=get_activity_amount_spent(@activity) + get_activity_amount_left(@activity)%>,
+        title: {
+          text: 'Spent'
+        }
+      },
 
-      }, 2000);
+      credits: {
+        enabled: false
+      },
 
+      series: [{
+        name: 'Amount Spent',
+        data: [<%=get_activity_amount_spent(@activity) %>],
+        dataLabels: {
+          format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+          ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+          '<span style="font-size:12px;color:silver">$</span></div>'
+        },
+        tooltip: {
+          valueSuffix: '$'
+        }
+      }]
 
-    });
+    }));
+
+    setInterval(<%=get_activity_amount_spent(@activity) %>, <%=get_activity_amount_spent(@activity) + get_activity_amount_left(@activity)%>)
+    
+  });
 
 </script>
