@@ -15,6 +15,7 @@
 //= require jquery.turbolinks
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
-//= require highcharts
-//= require chartkick
 //= require_tree .
+//= require highcharts
+//= require highcharts/highcharts-more
+//= require chartkick
