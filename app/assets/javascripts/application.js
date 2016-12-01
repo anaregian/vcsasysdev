@@ -18,4 +18,5 @@
 //= require_tree .
 //= require highcharts
 //= require highcharts/highcharts-more
+//= highcharts/modules/solid-gauge
 //= require chartkick
