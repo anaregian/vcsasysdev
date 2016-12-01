@@ -41,6 +41,13 @@ class UsersController < ApplicationController
 	def show
 
 	end
+
+	def destroy
+		@user.destroy
+		session[:user_id] = nil
+		flash[:danger] = "The user was deleted"
+		redirect_to users_path
+	end
 	# Private methods
 	private
 
