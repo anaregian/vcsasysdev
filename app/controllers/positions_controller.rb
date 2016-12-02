@@ -11,6 +11,7 @@ class PositionsController < ApplicationController
 		@positions = Position.search_pos(params[:search])
 		@incomes = Income.all
 		@estimation = Estimation.first
+		@all_positions = Position.all
 	end
 
 	# Controls the process of creating a new position

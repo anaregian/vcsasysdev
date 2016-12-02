@@ -81,7 +81,7 @@
 				},
 				series: [{
 					data: [
-					<% @positions.each do |p| %>
+					<% @all_positions.each do |p| %>
 					{
 						name: '<%= p.name %>',
 						y: <%= get_position_amount_spent(p) %>,
