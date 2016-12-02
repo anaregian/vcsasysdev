@@ -25,8 +25,9 @@
   height: 350px;
 }
 
-body {
-  background-color: #B6D8E3;
+.users-listing {
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .pie-chart{
@@ -54,6 +55,10 @@ body {
 .well
 {
 	background-color: #fff;
+}
+
+body {
+  background-color: #B6D8E3;
 }
 
 footer
