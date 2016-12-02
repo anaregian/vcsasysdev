@@ -10,7 +10,9 @@
 		<strong>Budget of the Year: <%= link_to number_to_currency(get_total_budget(@incomes)), incomes_path %></strong> <br/>
 		<strong>Amount Left: <%= number_to_currency(get_total_amount_left(@incomes)) %></strong>
 	</h4>
-	<strong><div id="chartContainer" class="col-md-4 col-md-pull-4 pie-chart"></div></strong>
+	<div class="row">
+		<strong><div id="chartContainer" class="col-md-4 col-md-pull-4 pie-chart"></div></strong>
+	</div>
 </div>
 <h3 align="center">All Positions</h3>
 
