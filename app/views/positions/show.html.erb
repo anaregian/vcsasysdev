@@ -12,7 +12,7 @@
 	<div class="col-md-12 center">
 		<%= link_to "Add an activity", new_activity_path, class: "btn btn-md btn-primary btn-top" %>
 		<%= link_to "Edit this position", edit_position_path(@position), class: "btn btn-md btn-warning btn-top" %>
-		<%= link_to "Delete position", position_path(@position), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-md btn-danger btn-top" %>
+		<%= link_to "Delete position", position_path(@position), method: :delete, data: {confirm: "Delete position and all its activities and components?"}, class: "btn btn-md btn-danger btn-top" %>
 		<%= link_to "View all positions", positions_path, class: "btn btn-md btn-info btn-top" %>
 	</div>
 	<form class="col-md-12 form-inline btn-top">
@@ -41,7 +41,7 @@
 		<td><%= number_to_currency(get_activity_amount_spent(a)) %></td>
 		<td><%= number_to_currency(get_activity_amount_left(a)) %></td>
 		<td class="hidden-print"><%= link_to 'Edit', edit_activity_path(a), class: "btn btn-warning btn-xs" %>
-			<%= link_to 'Delete', activity_path(a), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-danger btn-xs" %></td>
+			<%= link_to 'Delete', activity_path(a), method: :delete, data: {confirm: "Delete activity and all its components?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>
 	<% end %>
 </table>

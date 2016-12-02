@@ -33,7 +33,7 @@
 		<td><%= number_to_currency(get_activity_amount_left(a)) %></td>
 		<td><%= link_to a.position.name, position_path(a.position) %></td>
 		<td class="hidden-print"><%= link_to 'Edit', edit_activity_path(a), class: "btn btn-warning btn-xs" %>
-			<%= link_to 'Delete', activity_path(a), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-danger btn-xs" %></td>
+			<%= link_to 'Delete', activity_path(a), method: :delete, data: {confirm: "Delete activity and all its components?"}, class: "btn btn-danger btn-xs" %></td>
   </tr>
 	<% end %>
 </table>

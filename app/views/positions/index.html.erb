@@ -47,7 +47,7 @@
 		<td><%= number_to_currency(get_position_amount_left(p)) %></td>
 		<td><%= '%.2f' % get_position_budget_progress(p) %>%</td>
 		<td class="hidden-print"><%= link_to 'Edit', edit_position_path(p), class: "btn btn-warning btn-xs" %>
-			<%= link_to 'Delete', position_path(p), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-danger btn-xs" %></td>
+			<%= link_to 'Delete', position_path(p), method: :delete, data: {confirm: "Delete position and all its activities and components?"}, class: "btn btn-danger btn-xs" %></td>
 		</tr>
 		<% end %>
 	</table>
