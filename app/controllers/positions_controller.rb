@@ -5,6 +5,7 @@ class PositionsController < ApplicationController
 	before_action :set_position, only: [:edit, :update, :show, :destroy]
 	before_action :require_user
 
+
 	# Controls the positions list page
 	def index
 		@positions = Position.search_pos(params[:search])
