@@ -46,7 +46,7 @@ class PositionsController < ApplicationController
 
 	# Controls the show page of an individual position
 	def show
-		@activities = Activity.all
+		@activities = Position.find(params[:id]).activities.search_act(params[:search])
 	end
 
 	# Deletes a position

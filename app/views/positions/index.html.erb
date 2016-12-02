@@ -1,17 +1,16 @@
 <!--Displays the index page for the positions-->
 <div class="well row">
-  <div id="chartContainer" class="center pie-chart"></div>
-	<h4 class="col-md-6 center position-details">
-		<strong>Estimated Budget of the Year: <%= number_to_currency(get_estimate) %></strong> <strong class="hidden-print"><%= get_appropriate_link %></strong> <br/>
+	<h4 class="col-md-4 center details position-details">
+		<strong>Estimated Budget: <%= number_to_currency(get_estimate) %></strong> <strong class="hidden-print"><%= get_appropriate_link %></strong> <br/>
 		<strong>Amount Spent: <%= number_to_currency(get_total_amount_spent) %></strong> <br/>
 		<strong>Amount Left: <%= number_to_currency(get_estimate_amount_left) %></strong> <br/>
 		<strong>Progression of the Year: <%= '%.2f' % get_progression() %>%</strong>
 	</h4>
-	<h4 class="col-md-6 center position-details">
+	<h4 class="col-md-4 col-md-push-4 center position-details">
 		<strong>Budget of the Year: <%= link_to number_to_currency(get_total_budget(@incomes)), incomes_path %></strong> <br/>
 		<strong>Amount Left: <%= number_to_currency(get_total_amount_left(@incomes)) %></strong>
 	</h4>
-
+	<strong><div id="chartContainer" class="col-md-4 col-md-pull-4 pie-chart"></div></strong>
 </div>
 <h3 align="center">All Positions</h3>
 
@@ -51,49 +50,49 @@
 		<% end %>
 	</table>
 
-<!--Chart script-->
-<script>
+	<!--Chart script-->
+	<script>
 
-  $(function () {
-    Highcharts.chart('chartContainer', {
-      chart: {
-        plotBackgroundColor: false,
-        plotBorderWidth: null,
-        plotShadow: true,
-        type: 'pie'
+		$(function () {
+			Highcharts.chart('chartContainer', {
+				chart: {
+					plotBackgroundColor: false,
+					plotBorderWidth: null,
+					plotShadow: true,
+					type: 'pie'
 
-      },
-      title: {
-        text: null
-      },
+				},
+				title: {
+					text: "Amount spent per position"
+				},
 
-      tooltip: false,
-      plotOptions: {
-        pie: {
-          allowPointSelect: false,
-          dataLabels: {
-            enabled: true,
-            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-            style: {
-              color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-            }
-          }
-        }
-      },
-      series: [{
-        data: [
-          <% @positions.each do |p| %>
-            {
-          name: '<%= p.name %>',
-          y: <%= p.allocated_money%>,
-          selected: false
-        },
-            <% end %>
+				tooltip: false,
+				plotOptions: {
+					pie: {
+						allowPointSelect: false,
+						dataLabels: {
+							enabled: true,
+							format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+							style: {
+								color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+							}
+						}
+					}
+				},
+				series: [{
+					data: [
+					<% @positions.each do |p| %>
+					{
+						name: '<%= p.name %>',
+						y: <%= get_position_amount_spent(p) %>,
+						selected: false
+					},
+					<% end %>
 
-       ]
-      }]
-    });
-  });
+					]
+				}]
+			});
+		});
 
 
-</script>
+	</script>

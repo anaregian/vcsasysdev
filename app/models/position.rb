@@ -22,4 +22,20 @@ class Position < ActiveRecord::Base
 			end
 		end
 	end
+
+	def self.search_act(search)
+		if connection.adapter_name == 'PostgreSQL'
+			if search
+				where(['activity_name ILIKE ?', "%#{search}%"])
+			else
+				all
+			end
+		else
+  			if search
+   				where(['activity_name LIKE ?', "%#{search}%"])
+  			else
+    			all
+  			end
+  		end
+  	end
 end

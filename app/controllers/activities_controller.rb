@@ -43,7 +43,7 @@ class ActivitiesController < ApplicationController
 
 	# Controls the show page of an individual activity
 	def show
-		
+		@components = Activity.find(params[:id]).components.search_comp(params[:search])
 	end
 
 	# Deletes an activity

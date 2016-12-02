@@ -1,7 +1,7 @@
 <!--Displays the show page for the selected position-->
 <h2 align="center">Activities of <%= @position.name %></h2>
 <div class="well col-md-8 col-md-offset-2">
-	<h4 class="center position-details">
+	<h4 class="center details">
 		<strong>Allocated Money: <%= number_to_currency(@position.allocated_money) %></strong> <br/>
 		<strong>Amount spent: <%= number_to_currency(get_position_amount_spent(@position)) %></strong> <br/>
 		<strong>Amount Left: <%= number_to_currency(get_position_amount_left(@position)) %></strong>
@@ -15,14 +15,14 @@
 		<%= link_to "Delete position", position_path(@position), method: :delete, data: {confirm: "Delete position?"}, class: "btn btn-md btn-danger btn-top" %>
 		<%= link_to "View all positions", positions_path, class: "btn btn-md btn-info btn-top" %>
 	</div>
-	<!-- <form class="col-md-12 form-inline btn-top">
+	<form class="col-md-12 form-inline btn-top">
 		<div class="form-group">
 			<%= form_tag position_path(@position), :method => 'get' do %>
 			<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search activities" %>
 			<%= submit_tag "Search", class: "btn btn-default btn-s" %>
 			<% end %>
 		</div>
-	</form> -->
+	</form>
 </div>
 
 <table class="table table-condensed table-striped bg-white sortable">
@@ -34,7 +34,7 @@
 		<th class="hidden-print">Actions</th>
 	</tr>
 	<!--Goes through each row in the DB and displays them in the table-->
-	<% @position.activities.each do |a| %>
+	<% @activities.each do |a| %>
 	<tr>
 		<td><%= link_to a.activity_name, activity_path(a) %></td>
 		<td><%= number_to_currency(a.allocated_money) %></td>
