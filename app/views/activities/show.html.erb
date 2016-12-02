@@ -2,7 +2,7 @@
 <h2 align="center">Components of <%= @activity.activity_name %></h2>
 
 <div class="well col-md-8 col-md-offset-2">
-  <h4 class="text-left position-details">
+  <h4 class="center position-details">
     <strong>Host: <%= @activity.position.name %></strong><br/>
     <strong>Allocated Money: <%= number_to_currency(@activity.allocated_money) %></strong> <br/>
     <strong>Amount Spent: <%= number_to_currency(get_activity_amount_spent(@activity)) %></strong> <br/>
@@ -10,7 +10,7 @@
   </h4>
 
   <!-- Chart Container -->
-  <div id="chartContainer" class="well col-md-8 col-md-offset-2 pie-chart"></div>
+  <div id="chartContainer" style="width: 100%; height: 200px;"></div>
 
 </div>
 
@@ -121,7 +121,7 @@
         min: <%=get_activity_amount_spent(@activity) > 0 ? 0: get_activity_amount_spent(@activity) %>,
         max: <%=get_activity_amount_spent(@activity) + get_activity_amount_left(@activity)%>,
         title: {
-          text: 'Spent'
+          text: 'Amount Spent'
         }
       },
 

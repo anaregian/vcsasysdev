@@ -9,7 +9,8 @@ module BudgetHelper
 
 	def get_total_amount_spent
 		total = 0
-		@positions.each do |p|
+		pos = Position.all
+		pos.each do |p|
 			total += get_position_amount_spent(p)
 		end
 		return total
