@@ -29,7 +29,7 @@
 		</div>
 	</form>
 </div>
-<table class="table table-condensed table-striped bg-white sortable">
+<table class="table table-condensed bg-white sortable">
 	<tr>
 		<th>Position</th>
 		<th>Allocated Money</th>
@@ -40,7 +40,7 @@
 	</tr>
 	<!--Goes through each row in the DB and displays them in the table-->
 	<% @positions.each do |p| %>
-	<tr>
+	<tr class="<%= high_spending(get_position_budget_progress(p)) %>">
 		<td><%= link_to p.name, position_path(p) %></td>
 		<td><%= number_to_currency(p.allocated_money) %></td>
 		<td><%= number_to_currency(get_position_amount_spent(p)) %></td>

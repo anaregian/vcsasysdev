@@ -10,4 +10,11 @@ module ApplicationHelper
 		end
 		return (number_of_days / 365.0) * 100
 	end
+
+	def high_spending(progress)
+  	if progress > get_progression
+			return "danger"
+		end
+	end
+
 end
