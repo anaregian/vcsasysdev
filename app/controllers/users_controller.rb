@@ -15,12 +15,27 @@ class UsersController < ApplicationController
 	def create
 			@user = User.new(user_params)
 			if @user.save
+				UserMailer.registration_confirmation(@user).deliver
 				session[:user_id] = @user.id
-				flash[:success] = "sign up successful"
+				flash[:success] = "Registration completed! Please confirm your email address."
 				redirect_to root_path
 			else
+				flash[:error] = "Sorry we couldn't create your account. Something went wrong..."
 				render 'new'
 			end
+	end
+
+	def confirm_email
+		user = User.find_by_confirm_token(params[:id])
+		if user
+			user.email_activate
+			flash[:succes] = "Welcome to the V.C.S.A. budget system. Your account has now been confirmed."
+			redirect_to root_path
+		else
+			flash[:error] = "Error: User does not exist."
+			redirect_to root_path
+		end
+
 	end
 
 	def edit

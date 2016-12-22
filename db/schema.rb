@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161217001056) do
+ActiveRecord::Schema.define(version: 20161222152838) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "activity_name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20161217001056) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string   "username"
     t.string   "fname"
     t.string   "lname"
     t.string   "email"
@@ -58,7 +59,8 @@ ActiveRecord::Schema.define(version: 20161217001056) do
     t.datetime "updated_at",                      null: false
     t.string   "password_digest"
     t.boolean  "admin",           default: false
-    t.string   "username"
+    t.boolean  "email_confirmed"
+    t.string   "confirm_token"
   end
 
 end
