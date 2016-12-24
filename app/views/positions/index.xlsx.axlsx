@@ -1,0 +1,10 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Positions") do |sheet|
+  @positions.each do |position|
+    sheet.add_row [position.name,
+                  position.allocated_money,
+                  number_to_currency(get_position_amount_spent(position)),
+                  number_to_currency(get_position_amount_left(position)),
+                  '%.2f' % get_position_budget_progress(position)]
+  end
+end

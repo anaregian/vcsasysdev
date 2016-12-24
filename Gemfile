@@ -30,6 +30,8 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 # Use Bootstrap datepicker
 gem 'bootstrap-datepicker-rails'
+# Use axlsx_rails for excel exporting
+gem 'axlsx_rails'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record

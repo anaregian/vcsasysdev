@@ -8,10 +8,17 @@ class PositionsController < ApplicationController
 
 	# Controls the positions list page
 	def index
+		time = Time.now
 		@positions = Position.search_pos(params[:search])
 		@incomes = Income.all
 		@estimation = Estimation.first
 		@all_positions = Position.all
+		respond_to do |format|
+    	format.html
+			format.xlsx {
+    		response.headers['Content-Disposition'] = 'attachment; filename="positions.xlsx"'
+  		}
+  	end
 	end
 
 	# Controls the process of creating a new position

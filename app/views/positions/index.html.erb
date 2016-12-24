@@ -19,6 +19,7 @@
 <div class="row hidden-print">
 	<div class="center">
 		<%= link_to "Create new position", new_position_path, class: "btn btn-s btn-primary btn-top" %>
+		<%= link_to 'Export to Excel', positions_path(format: :xlsx), class: "btn btn-s btn-default btn-top" %>
 	</div>
 	<form class="col-md-12 form-inline btn-top">
 		<div class="form-group">
