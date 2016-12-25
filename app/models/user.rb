@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
 
 	before_save {|user| user.email = user.email.downcase}
-	before_create :confirm_token
+	before_create :confirmation_token
 
 	validates :username, presence: true, 
 		uniqueness: {case_sensitive: false}, 
@@ -30,6 +30,12 @@ class User < ActiveRecord::Base
 				all
 			end
 		end
+	end
+
+	def email_activate
+		self.email_confirmed = true
+		self.confirm_token = nil
+		save!(:validate => false)
 	end
 
 	private 
