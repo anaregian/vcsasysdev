@@ -1,5 +1,7 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Positions") do |sheet|
+  title = wb.styles.add_style(:bg_color => "EAEAEA", :fg_color=>"#FF000000")
+  sheet.add_row(%w{Position Allocated_Money Amount_Spent Amount_Left Progression}, :style=>title)
   @positions.each do |position|
     sheet.add_row [position.name,
                   position.allocated_money,
