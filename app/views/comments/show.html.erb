@@ -1,0 +1,15 @@
+<!--Displays the show page for the selected activity-->
+<div class="well col-md-8 col-md-offset-2">
+	<h4 class="center position-details">
+		<strong><%= @comment.description %></strong>
+		
+	</h4>
+</div>
+
+<div align="center" class="row">
+	<div class="col-md-12">
+		<%= link_to "Edit this comment", edit_comment_path(@comment), class: "btn btn-md btn-warning btn-top" %>
+		<%= link_to "Delete comment", comment_path(@comment), method: :delete, data: {confirm: "Delete comment?"}, class: "btn btn-md btn-danger btn-top" %>
+		<%= link_to "View all comments", comments_path, class: "btn btn-md btn-info btn-top" %>
+	</div>
+</div>

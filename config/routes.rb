@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 	resources :estimations
 	# Initializes all the routes for memos
 	resources :memos
+	# Initializes all the routes for comments
+	resources :comments
 
 	# Initializes all the routes for users
 	get 'signup', to: 'users#new'
