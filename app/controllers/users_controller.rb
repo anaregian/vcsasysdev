@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 				flash[:success] = "Registration completed! Please confirm your email address."
 				redirect_to root_path
 			else
-				flash[:error] = "Sorry we couldn't create your account. Something went wrong..."
+				flash[:danger] = "Sorry we couldn't create your account. Something went wrong..."
 				render 'new'
 			end
 	end
@@ -29,10 +29,10 @@ class UsersController < ApplicationController
 		user = User.find_by_confirm_token(params[:id])
 		if user
 			user.email_activate
-			flash[:succes] = "Welcome to the V.C.S.A. budget system. Your account has now been confirmed."
+			flash[:success] = "Welcome to the V.C.S.A. budget system. Your account has now been confirmed."
 			redirect_to root_path
 		else
-			flash[:error] = "Error: User does not exist."
+			flash[:danger] = "Error: User has already confirmed this account or user does not exist."
 			redirect_to root_path
 		end
 
