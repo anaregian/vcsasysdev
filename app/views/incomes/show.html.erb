@@ -1,0 +1,19 @@
+<!--Displays the show page for the selected activity-->
+<div class="well col-md-8 col-md-offset-2">
+	<h4 class="center position-details">
+		<strong>Amount: <%= number_to_currency(@income.amount) %></strong> <br/>
+		<strong>Received on: <%= @income.date.to_formatted_s(:long) %></strong>
+		<% if @income.description != "" %>
+		 <br/>
+		<small><%= @income.description %></small>
+		<% end %>
+	</h4>
+</div>
+
+<div align="center" class="row">
+	<div class="col-md-12">
+		<%= link_to "Edit this income", edit_income_path(@income), class: "btn btn-md btn-warning btn-top" %>
+		<%= link_to "Delete income", income_path(@income), method: :delete, data: {confirm: "Delete income?"}, class: "btn btn-md btn-danger btn-top" %>
+		<%= link_to "View all incomes", incomes_path, class: "btn btn-md btn-info btn-top" %>
+	</div>
+</div>

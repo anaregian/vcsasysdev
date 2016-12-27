@@ -1,0 +1,29 @@
+<h1 align="center">All V.C.S.A. Members</h1>
+<form class="col-md-12 form-inline btn-top">
+		<div class="form-group">
+			<%= form_tag users_path, :method => 'get' do %>
+			<%= text_field_tag :search, params[:search], class: "form-control hidden-print", placeholder: "Search members by name" %>
+			<%= submit_tag "Search", class: "btn btn-default btn-s hidden-print" %>
+			<% end %>
+		</div>
+	</form>
+<% @users.each do |u| %>
+<ul class="users-listing center">
+	<div class="row center">
+		<div class="well col-md-12 center">
+			<li class="user-name"><h3><%= link_to u.fname + ' ' + u.lname, user_path(u) %></h3></li>
+			<% if u.admin? %>
+			<h4>Admin</h4>
+			<% end %>
+			<% if logged_in? && (current_user == u || current_user.admin?) %>
+			<div class="row center hidden-print">
+				<div class="col-md-12">
+					<%= link_to "Edit", edit_user_path(u), class: "btn btn-md btn-warning btn-top" %>
+					<%= link_to "Delete", user_path(u), method: :delete, data: {confirm: "Delete member?"}, class: "btn btn-md btn-danger btn-top" %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</ul>
+<% end %>

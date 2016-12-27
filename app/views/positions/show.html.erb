@@ -1,0 +1,55 @@
+<!--Displays the show page for the selected position-->
+<h2 align="center">Activities of <%= @position.name %></h2>
+<div class="well col-md-8 col-md-offset-2">
+	<h4 class="center details">
+		<strong>Allocated Money: <%= number_to_currency(@position.allocated_money) %></strong> <br/>
+		<strong>Amount spent: <%= number_to_currency(get_position_amount_spent(@position)) %></strong> <br/>
+		<strong>Amount Left: <%= number_to_currency(get_position_amount_left(@position)) %></strong>
+	</h4>
+</div>
+
+<div class="row hidden-print">
+	<div class="col-md-12 center">
+		<%= link_to "Add an activity", new_activity_path, class: "btn btn-md btn-primary btn-top" %>
+		<%= link_to "Edit this position", edit_position_path(@position), class: "btn btn-md btn-warning btn-top" %>
+		<%= link_to "Delete position", position_path(@position), method: :delete, data: {confirm: "Delete position and all its activities and components?"}, class: "btn btn-md btn-danger btn-top" %>
+		<%= link_to "View all positions", positions_path, class: "btn btn-md btn-info btn-top" %>
+	</div>
+	<form class="col-md-12 form-inline btn-top">
+		<div class="form-group">
+			<%= form_tag position_path(@position), :method => 'get' do %>
+			<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search activities" %>
+			<%= submit_tag "Search", class: "btn btn-default btn-s" %>
+			<% end %>
+		</div>
+	</form>
+</div>
+
+<table class="table table-condensed bg-white sortable">
+	<tr>
+		<th>Activity</th>
+		<th>Allocated Money</th>
+		<th>Amount Spent</th>
+		<th>Amount Left</th>
+		<th class="hidden-print">Actions</th>
+		
+	</tr>
+	<!--Goes through each row in the DB and displays them in the table-->
+	<% @activities.each do |a| %>
+	<tr>
+		<td><%= link_to a.activity_name, activity_path(a) %></td>
+		<td><%= number_to_currency(a.allocated_money) %></td>
+		<td><%= number_to_currency(get_activity_amount_spent(a)) %></td>
+		<td><%= number_to_currency(get_activity_amount_left(a)) %></td>
+		<td class="hidden-print"><%= link_to 'Edit', edit_activity_path(a), class: "btn btn-warning btn-xs" %>
+			<%= link_to 'Delete', activity_path(a), method: :delete, data: {confirm: "Delete activity and all its components?"}, class: "btn btn-danger btn-xs" %></td>
+	</tr>
+	<% end %>
+
+	<tr>
+		<td>Total</td>
+		<td><%= number_to_currency(@activities.sum(:allocated_money)) %></td>
+		<td><%= number_to_currency(get_total_activity_amt_spent) %></td>
+		<td><%= number_to_currency(get_total_activity_amt_left) %></td> 
+	</tr>
+</table>
