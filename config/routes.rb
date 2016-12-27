@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 	resources :incomes
 	# Initializes all the routes for estimations
 	resources :estimations
+	# Initializes all the routes for memos
+	resources :memos
 
 	# Initializes all the routes for users
 	get 'signup', to: 'users#new'

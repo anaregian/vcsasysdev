@@ -1,0 +1,21 @@
+<!--Contains the form partial-->
+<!--Used for the new and edit actions-->
+<%= render 'shared/errors', obj: @memo %>
+
+<div class="row">
+	<div class="col-md-12">
+		<%= form_for(@memo, :html => {class: "form-horizontal", role: "form"}) do |p| %>
+		<div class="form-group">
+			<div class="col-md-8 col-md-offset-2">
+				<%= p.text_area :description, class: "form-control", placeholder: "Enter a memo", autofocus: true %>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-12">
+				<%= p.submit class: "btn btn-primary btn-lg" %>
+				<%= link_to "Cancel", memos_path, class: "btn btn-danger btn-lg" %>
+			</div>
+		</div>
+		<% end %>
+	</div>
+</div>
