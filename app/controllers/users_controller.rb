@@ -20,7 +20,6 @@ class UsersController < ApplicationController
 				flash[:success] = "Registration completed! Please confirm your email address."
 				redirect_to root_path
 			else
-				flash[:danger] = "Sorry we couldn't create your account. Something went wrong..."
 				render 'new'
 			end
 	end

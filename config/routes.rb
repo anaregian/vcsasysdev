@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
 	# Initializes all the routes for users
 	get 'signup', to: 'users#new'
-	resources :users, except: [:new] do
+	resources :users , except: [:new] do
 		member do
 			get :confirm_email
 		end
