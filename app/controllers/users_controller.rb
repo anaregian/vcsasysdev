@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
 	def create
 			@user = User.new(user_params)
+			
 			if @user.save
 				UserMailer.registration_confirmation(@user).deliver
 				session[:user_id] = @user.id
@@ -81,4 +82,5 @@ class UsersController < ApplicationController
 			redirect_to root_path
 		end
 	end
+
 end

@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
 
 	def create
 		user = User.find_by(email: params[:session][:email].downcase)
-		if user && user.authenticate(params[:session][:password])
+		if user.email_confirmed? && user && user.authenticate(params[:session][:password]) && 
 			
 			session[:user_id] = user.id
 			flash[:success] = "Logged in!"
@@ -14,8 +14,14 @@ class SessionsController < ApplicationController
 
 
 		else
-			flash.now[:danger] = "Sign in unsuccessful"
-			render 'new'
+			if user.email_confirmed?
+				flash.now[:danger] = "Sign in unsuccessful"
+				render 'new'
+		
+			else
+				flash.now[:danger] = "Confirm email before logging in"
+				render 'new'
+			end
 		end
 	end
 
