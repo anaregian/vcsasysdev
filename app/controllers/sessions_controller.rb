@@ -11,15 +11,14 @@ class SessionsController < ApplicationController
 			session[:user_id] = user.id
 			flash[:success] = "Logged in!"
 			redirect_to root_path
-
-
 		else
 			if user.email_confirmed?
 				flash.now[:danger] = "Sign in unsuccessful"
 				render 'new'
 		
 			else
-				flash.now[:danger] = "Confirm email before logging in"
+				flash.now[:danger] = "Confirm email before logging in. 
+				If you have a typo in your email please an administrator to delete your account. Then you may re-register with the same username"
 				render 'new'
 			end
 		end

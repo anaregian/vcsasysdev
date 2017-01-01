@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222152838) do
+ActiveRecord::Schema.define(version: 20161230200651) do
 
   create_table "activities", force: :cascade do |t|
     t.string   "activity_name"
@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 20161222152838) do
     t.boolean  "admin",           default: false
     t.boolean  "email_confirmed", default: false
     t.string   "confirm_token"
+    t.string   "admin_code"
   end
 
 end
