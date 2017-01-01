@@ -20,7 +20,6 @@ class UsersController < ApplicationController
 				session[:user_id] = @user.id
 				flash[:success] = "Registration completed! Please confirm your email address."
 				redirect_to root_path
-				render 'new'
 			else
 				render 'new'
 			end
