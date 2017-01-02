@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
 	validates :username, presence: true, 
 		uniqueness: {case_sensitive: false}, 
-		length: {minimum: 3, maximum: 25},
+		length: {minimum: 3, maximum: 25}
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
@@ -14,7 +14,6 @@ class User < ActiveRecord::Base
 		uniqueness: {case_sensitive: false},
 		format: {with: VALID_EMAIL_REGEX}
 
-		validates :admin_code, presence: true
 
 	has_secure_password
 
@@ -44,7 +43,7 @@ class User < ActiveRecord::Base
 
 	def confirmation_token
 		if self.confirm_token.blank?
-				self.confirm_token = SecureRandom.urlsafe_base64.to_s
+			self.confirm_token = SecureRandom.urlsafe_base64.to_s
 		end
 	end
 end
