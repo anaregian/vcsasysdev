@@ -14,6 +14,10 @@
 			<li class="user-name"><h3><%= link_to u.fname + ' ' + u.lname, user_path(u) %></h3></li>
 			<% if u.admin? %>
 			<h4>Admin</h4>
+			<% if u.email_confirmed %>
+			<% else %>
+			<h4> User has not confirmed email </h4>
+			<% end %>
 			<% end %>
 			<% if logged_in? && (current_user == u || current_user.admin?) %>
 			<div class="row center hidden-print">

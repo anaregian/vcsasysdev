@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
 	before_action :set_user, only: [:edit, :update, :show, :destroy]
-	before_action :require_user, except: [:new, :create]
+	before_action :require_user, except: [:new, :create , :confirm_email]
 	before_action :require_same_user, only: [:edit, :update, :destroy]
 
 	def index
@@ -17,7 +17,6 @@ class UsersController < ApplicationController
 			
 			if @user.save
 				UserMailer.registration_confirmation(@user).deliver
-				session[:user_id] = @user.id
 				flash[:success] = "Registration completed! Please confirm your email address."
 				redirect_to root_path
 			else
@@ -73,7 +72,7 @@ class UsersController < ApplicationController
 
 	# Assigns the parameters entered while creating or editing a user
 	def user_params
-		params.require(:user).permit(:username, :fname, :lname, :email, :password, :admin)
+		params.require(:user).permit(:username, :fname, :lname, :email, :password, :admin, :admin_code)
 	end
 
 	def require_same_user
