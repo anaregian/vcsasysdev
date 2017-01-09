@@ -1,10 +1,19 @@
 class CodesController < ApplicationController
 
  http_basic_authenticate_with :name => "sunny", :password => "asdasd123"
-
+before_action :require_same_user, only: [:edit,  :show, :destroy, :index]
 	def new
 		@code = Code.new
 	end
+
+	def index
+		@codes = Code.all
+	end
+
+	def show
+		
+	end
+
 
 	def create
 		@code = Code.new(code_params)
@@ -28,8 +37,21 @@ class CodesController < ApplicationController
 		end
 	end
 
+	def destroy
+		@code = Code.find(params[:id])
+		@code.destroy
+		flash[:danger] = "Code was deleted"
+		redirect_to code_path
+	end
+
 	def code_params
 		params.require(:code).permit(:code)
 	end
 
+	def require_same_user
+		if !current_user.admin?
+		flash[:danger] = "You can only edit or delete your own codes"
+		render 'new'
+		end
+	end
 end

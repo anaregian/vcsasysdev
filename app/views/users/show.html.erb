@@ -5,7 +5,6 @@
 		<h4>Username: <%= @user.username %></h4>
 		<% if @user.admin? && current_user.admin?%>
 		<h4>Admin User</h4>
-		<h4> Your admin code is: <%= @user.admin_code %> <h4>
 		<% end %>
 		<%= link_to 'Edit Information', edit_user_path(@user), class: "btn btn-warning btn-md hidden-print" %>
 	</div>

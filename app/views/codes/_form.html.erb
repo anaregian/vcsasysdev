@@ -16,7 +16,11 @@ Enter the secret sign up code in order to access the sign up page. Admins can pr
 		</div>
 		<div class = "form-group">
 			<div class="col-md-offset-2 col-md-12">
-				<%= f.submit "Check code"  ,class: "btn btn-primary btn-lg"  %>
+				<% if logged_in? %>
+					<%= f.submit "Create code",class: "btn btn-primary btn-lg"  %>
+				<% else %>
+				<%= f.submit "Check code" ,class: "btn btn-primary btn-lg"  %>
+				<% end %>
 				<%= link_to "Return to home page", root_path, class: "btn btn-danger btn-lg"%> 
 			</div>
 		</div>

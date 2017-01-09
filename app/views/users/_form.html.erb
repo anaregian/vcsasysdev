@@ -31,19 +31,12 @@
 			</div>
 		</div>
 
-		<div class="form-group">
-			<div class="col-md-8 col-md-offset-2">
-			<label>Admin Code*<%= p.text_field :admin_code, class: "form-control", placeholder: "Administrator code" %></label>
-			</div>
-		</div>
-
 		<% if current_user && current_user.admin? %>
 		<div class="form-group">
 			<div class="col-md-8 col-md-offset-2">
 			<label>Admin<%= p.check_box :admin, class: "form-control checkbox" %></label>
 			</div>
 		</div>
-
 		<% end %>
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-12">
@@ -51,16 +44,8 @@
 				<%= link_to "Cancel", root_path, class: "btn btn-danger btn-lg" %>
 			</div>
 		</div>
-		<% end %>
+		
 	</div>
 </div>
-<% if current_user && current_user.admin? %>
-	<footer>
-		*The admin code is needed to sign up and create an account. Every admin has a different code. Please do not share this code with anyone other than the person who wants to create an account. This code is used to ensure that no one outside of the V.C.S.A. can create an account.
-	</footer>
-	<% else %>
-		<footer>
-			*Ask an administrator in order to provide you with an admin code.
-		</footer>
 <% end %>
 
