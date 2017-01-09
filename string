@@ -1,0 +1,7 @@
+      invoke  active_record
+      create    db/migrate/20170104134939_create_admin_codes.rb
+      create    app/models/admin_code.rb
+      invoke    test_unit
+   identical      test/models/admin_code_test.rb
+    conflict      test/fixtures/admin_codes.yml
+<res/admin_codes.yml? (enter "h" for help) [Ynaqdh] Terminate batch job (Y/N)? 
