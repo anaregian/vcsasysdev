@@ -14,7 +14,6 @@ before_action :require_same_user, only: [:edit,  :show, :destroy, :index]
 		
 	end
 
-
 	def create
 		@code = Code.new(code_params)
 		if !logged_in?

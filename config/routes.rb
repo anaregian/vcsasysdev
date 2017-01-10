@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 	# Initializes all the routes for estimations
 	resources :estimations
 	# Initializes all the routes for admin_codes
-	resources :codes ,:path => "secret_page"
+	resources :codes ,:path => "secret_page", except: [:show]
 	# Initializes all the routes for users
 	get 'signup', to: 'users#new'
 	resources :users , except: [:new] do
