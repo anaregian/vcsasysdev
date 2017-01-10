@@ -16,18 +16,21 @@ before_action :require_same_user, only: [:edit,  :show, :destroy, :index]
 
 	def create
 		@code = Code.new(code_params)
+		@codesList = Code.select(:code)
 		if !logged_in?
-			if @code #No idea how to check.
+			if  @codesList.include? @code
 				flash.now[:success] = "Redirecting to Sign up page"
 				redirect_to signup_path
 			else
-				flash.now[:danger] = "Invalid admin code"
+				flash[:danger] = "Invalid admin code"
+				render 'new'
+				
 			end
-		else # admins can create new codes
+		else 
 			if current_user.admin?
 				@code.save
 				flash[:success] = "New code added"
-				redirect_to root_path
+				redirect_to codes_path
 			else
 				flash[:danger] = "Sorry only admins can use this page"
 				render 'new'
@@ -40,7 +43,7 @@ before_action :require_same_user, only: [:edit,  :show, :destroy, :index]
 		@code = Code.find(params[:id])
 		@code.destroy
 		flash[:danger] = "Code was deleted"
-		redirect_to code_path
+		render 'new'
 	end
 
 	def code_params
