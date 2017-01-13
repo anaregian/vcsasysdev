@@ -9,19 +9,19 @@ class UsersController < ApplicationController
 	end
 	
 	def new
-			@user = User.new
+		@user = User.new
 	end
 
 	def create
-			@user = User.new(user_params)
-				if @user.save
-					UserMailer.registration_confirmation(@user).deliver
-					flash[:success] = "Registration completed! Please confirm your email address."
-					redirect_to root_path
-				else
-					flash.now[:danger] = "Invalid admin code. User not created."
-					render 'new'
-				end
+		@user = User.new(user_params)
+		if @user.save && verify_code
+			UserMailer.registration_confirmation(@user).deliver
+			flash[:success] = "Registration completed! Please confirm your email address."
+			redirect_to root_path
+		else
+			flash.now[:danger] = "Invalid admin code. User not created."
+			render 'new'
+		end
 	end
 
 	def confirm_email
@@ -34,8 +34,8 @@ class UsersController < ApplicationController
 			flash[:danger] = "Error: User has already confirmed this account or user does not exist."
 			redirect_to root_path
 		end
-
 	end
+
 
 	def edit
 
@@ -79,6 +79,13 @@ class UsersController < ApplicationController
 		if current_user != @user and !current_user.admin?
 			flash[:danger] = "You cannot edit or delete other people's accounts"
 			redirect_to root_path
+		end
+	end
+
+	def verify_code
+		if admin_code != get_code
+		 flash[:danger] = "Incorrect Admin code"
+		 render 'new'
 		end
 	end
 

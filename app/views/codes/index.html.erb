@@ -1,23 +1,9 @@
 <!--Displays the index page for the positions-->
-<h1 align="center">All Valid Admin Codes</h1>
+<h3 align=" center"><strong>Admin Code*: <%= get_code %></strong> <strong class="hidden-print"><%= get_appropriate_link_code %></strong> <br/> </h3>
 
-<div class="row hidden-print">
-	<div class="col-md-12 center">
-		<%= link_to "Create new codes", new_code_path, class: "btn btn-s btn-primary btn-top" %>
-	</div>
-</div>
-<table class="table table-condensed bg-white sortable">
-	<tr>
-		<th>Codes</th>
-		<th class="hidden-print">Actions</th>
-	</tr>
-	<!--Goes through each row in the DB and displays them in the table-->
-	<% @codes.each do |c| %>
-	<tr>
-		<td><%= link_to c.code, code_path(c) %></td>
-	</td>
-		<td class="hidden-print">
-			<%= link_to 'Delete', code_path(c), method: :delete, data: {confirm: "Delete admin code?"}, class: "btn btn-danger btn-xs" %></td>
-	</tr>
-	<% end %>
-</table>
+<h5>
+
+<p><center>*This code is used in order to sign up. Note it is important to know that admins should keep this code a secret in order to avoid having unwanted users inside the database. Only share with a V.C.S.A. executive member. It is suggested to change the code every once in a while.
+</center>
+</p>
+</h5>

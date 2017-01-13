@@ -1,7 +1,8 @@
 class CodesController < ApplicationController
 
- http_basic_authenticate_with :name => "sunny", :password => "asdasd123"
-before_action :require_same_user, only: [:edit,  :show, :destroy, :index]
+#before_filter :require_user, only: [:edit,  :show, :destroy, :index, :update]
+before_action :require_admin_user, except: [:verify_code]
+
 	def new
 		@code = Code.new
 	end
@@ -12,6 +13,9 @@ before_action :require_same_user, only: [:edit,  :show, :destroy, :index]
 
 	def show
 		
+	end
+	def edit
+		@code = Code.find(params[:id])
 	end
 
 	def create
@@ -38,22 +42,30 @@ before_action :require_same_user, only: [:edit,  :show, :destroy, :index]
 			end
 		end
 	end
-
-	def destroy
+	
+	def update
 		@code = Code.find(params[:id])
-		@code.destroy
-		flash[:danger] = "Code was deleted"
-		render 'new'
+		if @code.update(code_params)
+			flash[:success] = "Code updated"
+			redirect_to codes_path
+		else
+			render 'edit'
+		end
+	end
+
+	def verify_code
+		
 	end
 
 	def code_params
 		params.require(:code).permit(:code)
 	end
 
-	def require_same_user
+	def require_admin_user
 		if !current_user.admin?
-		flash[:danger] = "You can only edit or delete your own codes"
-		render 'new'
+		flash[:danger] = "Requires you to be an admin user to access that page"
+		redirect_to root_path
 		end
 	end
+
 end

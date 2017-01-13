@@ -22,4 +22,5 @@ module EstimateHelper
 			return get_estimate - get_total_amount_spent
 		end
 	end
+	
 end

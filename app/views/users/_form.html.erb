@@ -1,7 +1,6 @@
 <!--Contains the form partial-->
 <!--Used for the new and edit actions-->
 <%= render 'shared/errors', obj: @user %>
-
 <div class="row">
 	<div class="col-md-12">
 		<%= form_for(@user, :html => {class: "form-horizontal", role: "form"}) do |p| %>
@@ -30,6 +29,12 @@
 				<%= p.password_field :password, class: "form-control", placeholder: "Password" %>
 			</div>
 		</div>
+	
+		<div class="form-group">
+			<div class="col-md-8 col-md-offset-2">
+			<%= p.text_field :admin_code, class: "form-control" ,placeholder: "Admin Code"%>
+			</div>
+		</div>
 
 		<% if current_user && current_user.admin? %>
 		<div class="form-group">
@@ -37,7 +42,10 @@
 			<label>Admin<%= p.check_box :admin, class: "form-control checkbox" %></label>
 			</div>
 		</div>
+
+
 		<% end %>
+
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-12">
 				<%= p.submit(@user.new_record? ? "Sign up" : "Update account", class: "btn btn-primary btn-lg") %>
@@ -46,6 +54,5 @@
 		</div>
 		
 	</div>
-</div>
 <% end %>
 
