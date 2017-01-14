@@ -53,10 +53,6 @@ before_action :require_admin_user, except: [:verify_code]
 		end
 	end
 
-	def verify_code
-		
-	end
-
 	def code_params
 		params.require(:code).permit(:code)
 	end
@@ -66,6 +62,10 @@ before_action :require_admin_user, except: [:verify_code]
 		flash[:danger] = "Requires you to be an admin user to access that page"
 		redirect_to root_path
 		end
+	end
+
+	def verify_code
+
 	end
 
 end
