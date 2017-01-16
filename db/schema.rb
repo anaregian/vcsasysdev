@@ -61,7 +61,6 @@ ActiveRecord::Schema.define(version: 20170104165920) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "username"
     t.string   "fname"
     t.string   "lname"
     t.string   "email"
@@ -69,6 +68,7 @@ ActiveRecord::Schema.define(version: 20170104165920) do
     t.datetime "updated_at",                      null: false
     t.string   "password_digest"
     t.boolean  "admin",           default: false
+    t.string   "username"
     t.boolean  "email_confirmed", default: false
     t.string   "confirm_token"
     t.string   "admin_code"
