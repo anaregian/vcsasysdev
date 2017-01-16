@@ -16,4 +16,12 @@ module CodeHelper
 		end
 	end
 
+	def verify_admin_code
+		if get_code == user_params[:admin_code]
+			return true
+		else
+			return false
+		end
+	end
+
 end

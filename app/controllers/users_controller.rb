@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 	before_action :require_user, except: [:new, :create , :confirm_email]
 	before_action :require_same_user, only: [:edit, :update, :destroy]
 
+
 	def index
 		@users = User.search_user(params[:search])
 	end
@@ -82,11 +83,20 @@ class UsersController < ApplicationController
 		end
 	end
 
+<<<<<<< HEAD
+	def verify_code
+		if user_params[:admin_code] == get_code
+			return true
+		else
+		 flash[:danger] = "Incorrect Admin code"
+		 render 'new'
+=======
 		def verify_code
 			if @user.admin_code != get_code
 			 flash[:danger] = "Incorrect Admin code"
 			 render 'new'
 			end
+>>>>>>> 44d7b0d7ee3b3c242f9f0d640ae6424c10bd3ea7
 		end
 
 end
