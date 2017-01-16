@@ -1,10 +1,11 @@
 class User < ActiveRecord::Base
-
+	include CodeHelper
 	before_save {|user| user.email = user.email.downcase}
 	before_create :confirmation_token
 
-	validates :username, presence: true, 
-		uniqueness: {case_sensitive: false}, 
+
+	validates :username, presence: true,
+		uniqueness: {case_sensitive: false},
 		length: {minimum: 3, maximum: 25}
 
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -39,7 +40,7 @@ class User < ActiveRecord::Base
 		save!(:validate => false)
 	end
 
-	private 
+	private
 
 	def confirmation_token
 		if self.confirm_token.blank?

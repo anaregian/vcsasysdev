@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
-
+	include CodeHelper
 	before_action :set_user, only: [:edit, :update, :show, :destroy]
 	before_action :require_user, except: [:new, :create , :confirm_email]
 	before_action :require_same_user, only: [:edit, :update, :destroy]
 
 	def index
-		@users = User.search_user(params[:search])	
+		@users = User.search_user(params[:search])
 	end
-	
+
 	def new
 		@user = User.new
 	end
@@ -82,11 +82,11 @@ class UsersController < ApplicationController
 		end
 	end
 
-	def verify_code
-		if admin_code != get_code
-		 flash[:danger] = "Incorrect Admin code"
-		 render 'new'
+		def verify_code
+			if @user.admin_code != get_code
+			 flash[:danger] = "Incorrect Admin code"
+			 render 'new'
+			end
 		end
-	end
-
+		
 end
