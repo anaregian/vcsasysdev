@@ -48,8 +48,14 @@
 
 		<div class="form-group">
 			<div class="col-md-offset-2 col-md-12">
-				<%= p.submit(@user.new_record? ? "Sign up" : "Update account", class: "btn btn-primary btn-lg") %>
+				<!--<%= p.submit(@user.new_record? && @user.email_confirmed == false ? "Sign up" : "Update account", class: "btn btn-primary btn-lg") %>
 				<%= link_to "Cancel", root_path, class: "btn btn-danger btn-lg" %>
+				-->
+				<% if @user.email_confirmed == false %>
+					<%= p.submit "Sign up", class: "btn btn-primary btn lg" %>
+				<% else %>
+					<%= p.submit "Update Account", class: "btn btn-primary btn lg" %>
+					<% end %>
 			</div>
 		</div>
 		
