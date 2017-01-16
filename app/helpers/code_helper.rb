@@ -1,5 +1,5 @@
 module CodeHelper
-		
+
 	def get_code
 		if Code.first == nil
 			return nil

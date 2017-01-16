@@ -12,7 +12,7 @@ before_action :require_admin_user, except: [:verify_code]
 	end
 
 	def show
-		
+
 	end
 	def edit
 		@code = Code.find(params[:id])
@@ -28,9 +28,9 @@ before_action :require_admin_user, except: [:verify_code]
 			else
 				flash[:danger] = "Invalid admin code"
 				render 'new'
-				
+
 			end
-		else 
+		else
 			if current_user.admin?
 				@code.save
 				flash[:success] = "New code added"
@@ -42,7 +42,7 @@ before_action :require_admin_user, except: [:verify_code]
 			end
 		end
 	end
-	
+
 	def update
 		@code = Code.find(params[:id])
 		if @code.update(code_params)
@@ -53,6 +53,13 @@ before_action :require_admin_user, except: [:verify_code]
 		end
 	end
 
+<<<<<<< HEAD
+=======
+	def verify_code
+
+	end
+
+>>>>>>> 44d7b0d7ee3b3c242f9f0d640ae6424c10bd3ea7
 	def code_params
 		params.require(:code).permit(:code)
 	end
