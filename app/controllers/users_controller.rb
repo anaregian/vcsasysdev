@@ -17,11 +17,11 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save && !verify_code
 			UserMailer.registration_confirmation(@user).deliver
-			flash[:success] = "Registration completed! Please confirm your email address."
-			redirect_to root_path
+			flash.now[:success] = "Registration completed! Please confirm your email address."
+			
 		else
-			flash[:danger] = "Invalid admin code. User not created."
-			render 'new'
+			flash.now[:danger] = "Invalid admin code. User not created."
+			
 		end
 	end
 
@@ -83,20 +83,13 @@ class UsersController < ApplicationController
 		end
 	end
 
-<<<<<<< HEAD
+
 	def verify_code
-		if user_params[:admin_code] == get_code
-			return true
-		else
+		if @user.admin_code != get_code
 		 flash[:danger] = "Incorrect Admin code"
 		 render 'new'
-=======
-		def verify_code
-			if @user.admin_code != get_code
-			 flash[:danger] = "Incorrect Admin code"
-			 render 'new'
-			end
->>>>>>> 44d7b0d7ee3b3c242f9f0d640ae6424c10bd3ea7
+	end
+
 		end
 
 end
