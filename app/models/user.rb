@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
 
+	include CodeHelper
 	before_save {|user| user.email = user.email.downcase}
 	before_create :confirmation_token
 
