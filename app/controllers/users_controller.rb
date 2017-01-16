@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
 	include CodeHelper
+
 	before_action :set_user, only: [:edit, :update, :show, :destroy]
 	before_action :require_user, except: [:new, :create , :confirm_email]
 	before_action :require_same_user, only: [:edit, :update, :destroy]
-
 
 	def index
 		@users = User.search_user(params[:search])
@@ -30,10 +30,10 @@ class UsersController < ApplicationController
 		if user
 			user.email_activate
 			flash[:success] = "Welcome to the V.C.S.A. budget system. Your account has now been confirmed."
-			redirect_to root_path
+			redirect_to signup_path
 		else
 			flash[:danger] = "Error: User has already confirmed this account or user does not exist."
-			redirect_to root_path
+			redirect_to signup_path
 		end
 	end
 
@@ -61,7 +61,6 @@ class UsersController < ApplicationController
 		@user.destroy
 		session[:user_id] = nil
 		flash[:danger] = "The user was deleted"
-		redirect_to users_path
 	end
 	# Private methods
 	private
@@ -88,6 +87,9 @@ class UsersController < ApplicationController
 		if @user.admin_code != get_code
 		 flash[:danger] = "Incorrect Admin code"
 		 render 'new'
+		 @user.destroy
+		 session[:user_id] = nil
+
 	end
 
 		end
