@@ -6,7 +6,7 @@ class MemosController < ApplicationController
 	before_action :set_memo, only: [:edit, :update, :show, :destroy]
 
 	def index
-		@memo = Memo.all
+		@memo = Memo.where(:user_id => current_user.id)
 	end
 
 	def new
