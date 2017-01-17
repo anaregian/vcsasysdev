@@ -53,13 +53,6 @@ before_action :require_admin_user, except: [:verify_code]
 		end
 	end
 
-<<<<<<< HEAD
-=======
-	def verify_code
-
-	end
-
->>>>>>> 44d7b0d7ee3b3c242f9f0d640ae6424c10bd3ea7
 	def code_params
 		params.require(:code).permit(:code)
 	end
@@ -71,8 +64,5 @@ before_action :require_admin_user, except: [:verify_code]
 		end
 	end
 
-	def verify_code
-
-	end
 
 end
