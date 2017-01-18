@@ -41,17 +41,12 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.fname %>'s profile <%= "(Admin)" if current_user.admin? %><span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><%= link_to "Edit profile", edit_user_path(current_user) %></li>
-<<<<<<< HEAD
-            <li><%= link_to "View profile", user_path(current_user) %></            <% if current_user.admin? %>
-            <li>
-            <%= link_to "Admin Codes", codes_path %>
-              
-            </li>
+            <li><%= link_to "View profile", user_path(current_user) %></li>
+            <% if current_user.admin? %>
+            <li><%= link_to "Admin Codes", codes_path %></li>
             <% end %>
-=======
             <li><%= link_to "View profile", user_path(current_user) %></li>
             <li><%= link_to "Memos", memos_path %></li>
->>>>>>> e8e5446c0d0343e3d4649b6d8102bc2e14f9d94f
           </ul>
         </li>
         <% else %>
