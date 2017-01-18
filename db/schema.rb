@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20170118012439) do
+=======
+ActiveRecord::Schema.define(version: 20170117040844) do
+>>>>>>> e8e5446c0d0343e3d4649b6d8102bc2e14f9d94f
 
   create_table "activities", force: :cascade do |t|
     t.string   "activity_name"
@@ -20,6 +24,7 @@ ActiveRecord::Schema.define(version: 20170118012439) do
     t.integer  "position_id"
   end
 
+<<<<<<< HEAD
   create_table "admin_code", force: :cascade do |t|
     t.string "admin_code"
   end
@@ -28,6 +33,12 @@ ActiveRecord::Schema.define(version: 20170118012439) do
     t.string   "code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+=======
+  create_table "comments", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+>>>>>>> e8e5446c0d0343e3d4649b6d8102bc2e14f9d94f
   end
 
   create_table "components", force: :cascade do |t|
@@ -53,6 +64,13 @@ ActiveRecord::Schema.define(version: 20170118012439) do
     t.datetime "updated_at"
   end
 
+  create_table "memos", force: :cascade do |t|
+    t.string   "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
+
   create_table "positions", force: :cascade do |t|
     t.string   "name"
     t.decimal  "allocated_money"
@@ -68,6 +86,7 @@ ActiveRecord::Schema.define(version: 20170118012439) do
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
     t.string   "password_digest"
+<<<<<<< HEAD
     t.boolean  "admin",                  default: false
     t.boolean  "email_confirmed",        default: false
     t.string   "confirm_token"
@@ -75,6 +94,9 @@ ActiveRecord::Schema.define(version: 20170118012439) do
     t.string   "auth_token"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+=======
+    t.boolean  "admin",           default: false
+>>>>>>> e8e5446c0d0343e3d4649b6d8102bc2e14f9d94f
   end
 
 end

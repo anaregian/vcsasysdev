@@ -1,0 +1,23 @@
+<!--Displays the index page for the memos-->
+<h1 align="center">Listing all Memos</h1>
+
+<div align="center" class="row">
+	<div class="col-md-12">
+		<%= link_to "Add new memo", new_memo_path, class: "btn btn-s btn-primary btn-top" %>
+	</div>
+</div>
+<table class="table table-condensed bg-white sortable">
+	<tr>
+		<th>Date</th>
+		<th>Description</th>
+	</tr>
+	<!--Goes through each row in the DB and displays them in the table-->
+	<% @memo.each do |i| %>
+	<tr>
+		<td><%= i.updated_at.to_formatted_s(:long) %></td>
+		<td><%= i.description %></td>
+		<td><%= link_to 'Edit', edit_memo_path(i), class: "btn btn-warning btn-xs" %>
+			<%= link_to 'Delete', memo_path(i), method: :delete, data: {confirm: "Delete memo?"}, class: "btn btn-danger btn-xs" %></td>
+	</tr>
+	<% end %>
+</table>
