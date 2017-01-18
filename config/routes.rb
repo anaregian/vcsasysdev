@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-	
-	# Sets the root page as the welcome page
+		# Sets the root page as the welcome page
 	root 'welcome#home'
 	# Initializes all the routes for positions
 	resources :positions
@@ -12,6 +11,8 @@ Rails.application.routes.draw do
 	resources :incomes
 	# Initializes all the routes for estimations
 	resources :estimations
+	# Initializes all the routes for password_resets
+	resources :password_resets
 	# Initializes all the routes for admin_codes
 	resources :codes ,:path => "secret_page", except: [:show]
 	# Initializes all the routes for users

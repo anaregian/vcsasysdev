@@ -1,0 +1,13 @@
+<%= form_tag password_resets_path, :method => :post do %>
+  <div class="form-group">
+  	<div class="col-md-8 col-md-offset-2">
+  		<%= text_field_tag :email, params[:email], class: "form-control", placeholder: "E-mail address" %>
+  	</div>
+  </div>
+  <div class="form-group">
+  	<div class="col-md-offset-2 col-md-12 spacer">
+  		<%= submit_tag "Reset Password", class: "btn btn-primary btn-lg" %>
+  		<%= link_to "Cancel", root_path, class: "btn btn-danger btn-lg" %>
+  	</div>
+  </div>
+<% end %>
