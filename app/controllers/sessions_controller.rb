@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
 	def new
-		
+
 	end
 
 	def create
@@ -10,18 +10,18 @@ class SessionsController < ApplicationController
 			session[:user_id] = user.id
 			flash[:success] = "Logged in!"
 			redirect_to root_path
-			
+
 		else
 			if  user && user.email_confirmed?
 				flash.now[:danger] = "Sign in unsuccessful"
 				render 'new'
-			
+
 			elsif !user
-				flash.now[:danger] = "User does not exist"
+				flash.now[:danger] = "Wrong Username or Password"
 				render 'new'
 
 			else
-				flash.now[:danger] = "Confirm email before logging in. 
+				flash.now[:danger] = "Confirm email before logging in.
 				If you have a typo in your email please ask an administrator to delete your account. Then you may re-register with the same username"
 				render 'new'
 			end
