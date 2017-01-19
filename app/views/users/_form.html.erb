@@ -19,7 +19,7 @@
 				<%= p.text_field :lname, class: "form-control", placeholder: "Last Name" %>
 			</div>
 		</div>
-		<% if params[:new] %>
+		<% if params[:action] == "new" %>
 		<div class="form-group">
 			<div class="col-md-8 col-md-offset-2">
 				<%= p.email_field :email, class: "form-control", placeholder: "E-mail address" %>
