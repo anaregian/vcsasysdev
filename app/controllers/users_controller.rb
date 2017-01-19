@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 		else
 			render 'new'
 		end
-		
+
 	end
 
 	def confirm_email
@@ -30,12 +30,12 @@ class UsersController < ApplicationController
 		if user
 			user.email_activate
 			flash[:success] = "Welcome to the V.C.S.A. budget system. Your account has now been confirmed."
-			
+
 		else
 			flash[:danger] = "Error: User has already confirmed this account or user does not exist."
-			
+
 		end
-		return redirect_to root_path 
+		return redirect_to root_path
 	end
 
 
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 	def update
 		if @user.update(user_params)
 			flash[:success] = "user updated"
-			redirect_to user_path(@user)
+			redirect_to users_path
 		else
 			render 'edit'
 		end

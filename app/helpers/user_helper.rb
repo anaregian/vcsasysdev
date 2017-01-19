@@ -9,9 +9,16 @@ module UserHelper
 
 		if @user.email_confirmed?
 			return true
-		else 
+		else
 			return false
 		end
 	end
 
+	def get_access_level(user)
+		if user.admin
+			return "Admin"
+		else
+			return "User"
+		end
+	end
 end

@@ -1,11 +1,9 @@
 <!--Displays the show page for the selected position-->
-<h2 align="center">Welcome, <%= @user.fname %></h2>
+<h2 align="center"><%= @user.fname + ' ' + @user.lname %></h2>
 <div class="row">
 	<div class="col-md-4 col-md-offset-4 center">
 		<h4>Username: <%= @user.username %></h4>
-		<% if @user.admin? && current_user.admin?%>
-		<h4>Admin User</h4>
-		<% end %>
+		<h4><%= get_access_level(@user) %></h4>
 		<%= link_to 'Edit Information', edit_user_path(@user), class: "btn btn-warning btn-md hidden-print" %>
 	</div>
 </div>
