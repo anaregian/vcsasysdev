@@ -1,0 +1,28 @@
+
+<!--Main template of the application-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	
+	<title>V.C.S.A.</title>
+	<%= favicon_link_tag 'favicon.ico' %>
+	<%= csrf_meta_tags %>
+
+	<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+	<!--Renders the navigation partial-->
+	<%= render 'layouts/navigation' %>
+	<div class="container">
+		<!--Renders the messages partial (if applicable)-->
+		<%= render 'layouts/messages' %>
+		<!--Displays the appropriate view-->
+		<%= yield %>
+	</div>
+	<!--Renders the footer-->
+	<%= render 'layouts/footer' %>
+</body>
+</html>
+

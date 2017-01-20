@@ -1,0 +1,158 @@
+<!--Displays the show page for the selected activity-->
+<h2 align="center">Components of <%= @activity.activity_name %></h2>
+
+<div class="well col-md-8 col-md-offset-2">
+  <h4 class="center details">
+    <strong>Host: <%= @activity.position.name %></strong><br/>
+    <strong>Allocated Money: <%= number_to_currency(@activity.allocated_money) %></strong> <br/>
+    <strong>Amount Spent: <%= number_to_currency(get_activity_amount_spent(@activity)) %></strong> <br/>
+    <strong>Amount Left: <%= number_to_currency(get_activity_amount_left(@activity)) %></strong> <br/>
+  </h4>
+  <!-- Chart Container -->
+  <!-- <div id="chartContainer" style="width: 100%; height: 200px;"></div> -->
+</div>
+
+
+<div class="row hidden-print">
+  <div class="col-md-12 center">
+    <%= link_to "Add a component", new_component_path, class: "btn btn-md btn-primary btn-top" %>
+    <%= link_to "Edit this activity", edit_activity_path(@activity), class: "btn btn-md btn-warning btn-top" %>
+    <%= link_to "Delete activity", activity_path(@activity), method: :delete, data: {confirm: "Delete activity and all its components?"}, class: "btn btn-md btn-danger btn-top" %>
+    <%= link_to "View all activities", activities_path, class: "btn btn-md btn-info btn-top" %>
+    <%= link_to "View host", position_path(@activity.position), class: "btn btn-md btn-default btn-top" %>
+  </div>
+  <form class="col-md-12 form-inline btn-top">
+		<div class="form-group">
+			<%= form_tag activity_path(@activity), :method => 'get' do %>
+			<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search components" %>
+			<%= submit_tag "Search", class: "btn btn-default btn-s" %>
+
+  <% end %>
+		</div>
+	</form>
+</div>
+
+<table class="table table-condensed bg-white sortable">
+  <tr>
+    <th>Component</th>
+    <th>Description</th>
+    <th>Cost</th>
+    <th class="hidden-print">Actions</th>
+  </tr>
+  <!--Goes through each row in the DB and displays them in the table-->
+  <% @components.each do |c| %>
+      <tr>
+        <td class="col-md-2"><%= link_to c.component_name, component_path(c) %></td>
+        <td class="col-md-2"><%= truncate(c.description, length: 30) %></td>
+        <td class="col-md-2"><%= number_to_currency(c.cost) %></td>
+        <td class="hidden-print col-md-2"><%= link_to 'Edit', edit_component_path(c), class: "btn btn-warning btn-xs" %>
+          <%= link_to 'Delete', component_path(c), method: :delete, data: {confirm: "Delete component?"}, class: "btn btn-danger btn-xs" %></td>
+      </tr>
+  <% end %>
+</table>
+
+<table class="table table-condensed bg-white">
+  <tr>
+    <td class="col-md-2"><b>Total</b></td>
+    <td class="col-md-2"></td>
+    <td class="col-md-2"><%= number_to_currency(@components.sum(:cost)) %></td>
+    <td class="col-md-2"></td>
+  </tr>
+</table>
+
+
+
+<!--Chart script-->
+<script>
+
+
+  $(function () {
+
+    var gaugeOptions = {
+
+      chart: {
+        type: 'solidgauge'
+      },
+
+      title: null,
+
+      pane: {
+        center: ['50%', '85%'],
+        size: '140%',
+        startAngle: -90,
+        endAngle: 90,
+        background: {
+          backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+          innerRadius: '60%',
+          outerRadius: '100%',
+          shape: 'arc'
+        }
+      },
+
+      tooltip: {
+        enabled: false
+      },
+
+      // the value axis
+      yAxis: {
+        stops: [
+          [0.1, '#55BF3B'], // green
+          [0.5, '#DDDF0D'], // yellow
+          [0.9, '#DF5353'] // red
+        ],
+        lineWidth: 0,
+        minorTickInterval: null,
+        tickAmount: 2,
+        title: {
+          y: -70
+        },
+        labels: {
+          y: 16
+        }
+      },
+
+      plotOptions: {
+        solidgauge: {
+          dataLabels: {
+            y: 5,
+            borderWidth: 0,
+            useHTML: true
+          }
+        }
+      }
+    };
+
+    // The speed gauge
+    var chartSpeed = Highcharts.chart('chartContainer', Highcharts.merge(gaugeOptions, {
+      yAxis: {
+        min: <%=get_activity_amount_spent(@activity) > 0 ? 0: get_activity_amount_spent(@activity) %>,
+        max: <%=get_activity_amount_spent(@activity) + get_activity_amount_left(@activity)%>,
+        title: {
+          text: 'Amount Spent'
+        }
+      },
+
+      credits: {
+        enabled: false
+      },
+
+      series: [{
+        name: 'Amount Spent',
+        data: [<%=get_activity_amount_spent(@activity) %>],
+        dataLabels: {
+          format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+          ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+          '<span style="font-size:12px;color:silver">$</span></div>'
+        },
+        tooltip: {
+          valueSuffix: '$'
+        }
+      }]
+
+    }));
+
+    setInterval(<%=get_activity_amount_spent(@activity) %>, <%=get_activity_amount_spent(@activity) + get_activity_amount_left(@activity)%>)
+
+  });
+
+</script>

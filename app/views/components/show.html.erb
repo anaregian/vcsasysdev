@@ -1,0 +1,21 @@
+<!--Displays the show page for the selected activity-->
+<h2 align="center"><%= @component.component_name %></h2>
+<div class="well col-md-8 col-md-offset-2">
+	<h4 class="center position-details">
+		<strong>Cost: <%= number_to_currency(@component.cost) %></strong> <br/>
+		<strong>Part of: <%= @component.activity.activity_name %></strong>
+		<% if @component.description != "" %>
+		 <br/>
+		<small><%= @component.description %></small>
+		<% end %>
+	</h4>
+</div>
+
+<div class="row center hidden-print">
+	<div class="col-md-12">
+		<%= link_to "Edit this component", edit_component_path(@component), class: "btn btn-md btn-warning btn-top" %>
+		<%= link_to "Delete component", component_path(@component), method: :delete, data: {confirm: "Delete component?"}, class: "btn btn-md btn-danger btn-top" %>
+		<%= link_to "View all components", components_path, class: "btn btn-md btn-info btn-top" %>
+		<%= link_to "View corresponding activity", activity_path(@component.activity), class: "btn btn-md btn-default btn-top" %>
+	</div>
+</div>

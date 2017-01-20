@@ -1,0 +1,112 @@
+<!--Displays the index page for the positions-->
+<div class="well row">
+	<h4 class="col-md-6 center details">
+		<strong>Estimated Budget: <%= number_to_currency(get_estimate) %></strong> <strong class="hidden-print"><%= get_appropriate_link %></strong> <br/>
+		<strong>Amount Spent: <%= number_to_currency(get_total_amount_spent) %></strong> <br/>
+		<strong>Amount Left: <%= number_to_currency(get_estimate_amount_left) %></strong> <br/>
+		<strong>Progression of the Year: <%= '%.2f' % get_progression() %>%</strong>
+	</h4>
+	<h4 class="col-md-6 center position-details">
+		<strong>Budget of the Year: <%= link_to number_to_currency(get_total_budget(@incomes)), incomes_path %></strong> <br/>
+		<strong>Amount Left: <%= number_to_currency(get_total_amount_left(@incomes)) %></strong>
+	</h4>
+	<div class="row">
+		<strong><div id="chartContainer" class="col-md-12 pie-chart"></div></strong>
+	</div>
+</div>
+
+<h3 align="center">All Positions</h3>
+<div class="row hidden-print">
+	<div class="center">
+		<%= link_to "Create new position", new_position_path, class: "btn btn-s btn-primary btn-top" %>
+	</div>
+	<form class="col-md-12 form-inline btn-top">
+		<div class="form-group">
+			<%= form_tag positions_path, :method => 'get' do %>
+			<%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search positions by name" %>
+			<%= submit_tag "Search", class: "btn btn-default btn-s" %>
+			<% end %>
+		</div>
+	</form>
+</div>
+<table class="table table-condensed bg-white sortable">
+	<tr>
+		<th>Position</th>
+		<th>Allocated Money</th>
+		<th>Amount Spent</th>
+		<th>Amount Left</th>
+		<th>Budget Progression</th>
+		<th class="hidden-print">Actions</th>
+	</tr>
+	<!--Goes through each row in the DB and displays them in the table-->
+	<% @positions.each do |p| %>
+	<tr class="<%= high_spending(get_position_budget_progress(p)) %>">
+		<td class="col-md-2"><%= link_to p.name, position_path(p) %></td>
+		<td class="col-md-2"><%= number_to_currency(p.allocated_money) %></td>
+		<td class="col-md-2"><%= number_to_currency(get_position_amount_spent(p)) %></td>
+		<td class="col-md-2"><%= number_to_currency(get_position_amount_left(p)) %></td>
+		<td class="col-md-2"><%= '%.2f' % get_position_budget_progress(p) %>%</td>
+		<td class="hidden-print class="col-md-2""><%= link_to 'Edit', edit_position_path(p), class: "btn btn-warning btn-xs" %>
+			<%= link_to 'Delete', position_path(p), method: :delete, data: {confirm: "Delete position and all its activities and components?"}, class: "btn btn-danger btn-xs" %></td>
+		</tr>
+		<% end %>
+	</table>
+
+	<table class="table table-condensed bg-white">
+		<tr>
+			<td class="col-md-2"><b>Total</b></td>
+		    <td class="col-md-2"><%= number_to_currency(@positions.sum(:allocated_money)) %></td>
+			<td class="col-md-2"><%= number_to_currency(get_total_position_amt_spent) %></td>
+			<td class="col-md-2"><%= number_to_currency(get_total_position_amt_left) %></td>
+			<td class="col-md-2"></td>
+			<td class="col-md-2"></td>
+		</tr>
+		
+	</table>
+
+	<!--Chart script-->
+	<script>
+
+		$(function () {
+			Highcharts.chart('chartContainer', {
+				chart: {
+					plotBackgroundColor: false,
+					plotBorderWidth: null,
+					plotShadow: true,
+					type: 'pie'
+
+				},
+				title: {
+					text: "Amount spent per position"
+				},
+
+				tooltip: false,
+				plotOptions: {
+					pie: {
+						allowPointSelect: false,
+						dataLabels: {
+							enabled: true,
+							format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+							style: {
+								color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+							}
+						}
+					}
+				},
+				series: [{
+					data: [
+					<% @all_positions.each do |p| %>
+					{
+						name: '<%= p.name %>',
+						y: <%= get_position_amount_spent(p) %>,
+						selected: false
+					},
+					<% end %>
+
+					]
+				}]
+			});
+		});
+
+
+	</script>
