@@ -5,7 +5,6 @@
 	<div class="col-md-12">
 		<%= link_to "Add new income", new_income_path, class: "btn btn-s btn-primary btn-top" %>
 		<%= link_to "View all positions", positions_path, class: "btn btn-s btn-info btn-top" %>
-		<%= link_to 'Export to Excel', incomes_path(format: :xlsx), class: "btn btn-s btn-default btn-top" %>
 	</div>
 </div>
 <table class="table table-condensed bg-white sortable">
@@ -17,10 +16,18 @@
 	<!--Goes through each row in the DB and displays them in the table-->
 	<% @incomes.each do |i| %>
 	<tr>
-		<td><%= link_to i.date.to_formatted_s(:long), income_path(i) %></td>
-		<td><%= number_to_currency(i.amount) %></td>
-		<td><%= link_to 'Edit', edit_income_path(i), class: "btn btn-warning btn-xs" %>
+		<td class="col-md-2"><%= link_to i.date.to_formatted_s(:long), income_path(i) %></td>
+		<td class="col-md-2"><%= number_to_currency(i.amount) %></td>
+		<td class="col-md-2"><%= link_to 'Edit', edit_income_path(i), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', income_path(i), method: :delete, data: {confirm: "Delete income?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>
 	<% end %>
+</table>
+
+<table class="table table-condensed bg-white">
+	<tr>
+		<td class="col-md-2"><b>Total</b></td>
+		<td class="col-md-2"><%= number_to_currency(@incomes.sum(:amount)) %></td>
+		<td class="col-md-2"></td>
+	</tr>
 </table>

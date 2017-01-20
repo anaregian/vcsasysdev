@@ -40,7 +40,6 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-
   config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.

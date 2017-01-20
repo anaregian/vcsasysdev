@@ -6,7 +6,6 @@
 		<%= link_to "Create new component", new_component_path, class: "btn btn-s btn-primary btn-top" %>
 		<%= link_to "View all activities", activities_path, class: "btn btn-s btn-info btn-top" %>
 		<%= link_to "View all positions", positions_path, class: "btn btn-s btn-info btn-top" %>
-		<%= link_to 'Export to Excel', components_path(format: :xlsx), class: "btn btn-s btn-default btn-top" %>
 	</div>
 	<form class="col-md-12 form-inline btn-top">
 		<div class="form-group">
@@ -28,12 +27,22 @@
 	<!--Goes through each row in the DB and displays them in the table-->
 	<% @components.each do |c| %>
 	<tr>
-		<td><%= link_to c.component_name, component_path(c) %></td>
-		<td><%= truncate(c.description, length: 30) %></td>
-		<td><%= number_to_currency(c.cost) %></td>
-		<td><%= link_to c.activity.activity_name, activity_path(c.activity) %></td>
-		<td class="hidden-print"><%= link_to 'Edit', edit_component_path(c), class: "btn btn-warning btn-xs" %>
+		<td class="col-md-2"><%= link_to c.component_name, component_path(c) %></td>
+		<td class="col-md-2"><%= truncate(c.description, length: 30) %></td>
+		<td class="col-md-2"><%= number_to_currency(c.cost) %></td>
+		<td class="col-md-2"><%= link_to c.activity.activity_name, activity_path(c.activity) %></td>
+		<td class="hidden-print col-md-2"><%= link_to 'Edit', edit_component_path(c), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', component_path(c), method: :delete, data: {confirm: "Delete component?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>
 	<% end %>
+</table>
+
+<table class="table table-condensed bg-white">
+	<tr>
+		<td class="col-md-2"><b>Total</b></td>
+		<td class="col-md-2"></td>
+		<td class="col-md-2"><%= number_to_currency(@components.sum(:cost)) %></td>
+		<td class="col-md-2"></td>
+		<td class="col-md-2"></td>
+	</tr>
 </table>
