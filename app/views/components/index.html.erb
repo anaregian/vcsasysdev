@@ -6,6 +6,7 @@
 		<%= link_to "Create new component", new_component_path, class: "btn btn-s btn-primary btn-top" %>
 		<%= link_to "View all activities", activities_path, class: "btn btn-s btn-info btn-top" %>
 		<%= link_to "View all positions", positions_path, class: "btn btn-s btn-info btn-top" %>
+		<%= link_to 'Export to Excel', components_path(format: :xlsx), class: "btn btn-s btn-default btn-top" %>
 	</div>
 	<form class="col-md-12 form-inline btn-top">
 		<div class="form-group">
