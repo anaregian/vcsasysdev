@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-		# Sets the root page as the welcome page
+	# Sets the root page as the welcome page
 	root 'welcome#home'
 	# Initializes all the routes for positions
 	resources :positions

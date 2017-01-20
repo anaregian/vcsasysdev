@@ -31,7 +31,4 @@ class EstimationsController < ApplicationController
 	def estimation_params
 		params.require(:estimation).permit(:estimate)
 	end
-
-
-
 end

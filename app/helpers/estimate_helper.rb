@@ -1,3 +1,4 @@
+
 module EstimateHelper
 	def get_estimate
 		if Estimation.first == nil
@@ -22,5 +23,4 @@ module EstimateHelper
 			return get_estimate - get_total_amount_spent
 		end
 	end
-	
 end

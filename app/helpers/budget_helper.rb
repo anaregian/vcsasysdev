@@ -3,7 +3,7 @@ module BudgetHelper
 		total = 0
 		income.all.each do |i|
 			total += i.amount
-		end	
+		end
 		return total
 	end
 
