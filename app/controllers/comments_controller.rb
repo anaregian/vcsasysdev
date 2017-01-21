@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
 	# Calls the set_comment method before executing edit, update, show or destroy actions
 	before_action :set_comment, only: [:edit, :update, :show, :destroy]
-
+	before_action :require_user
 	def index
 		@comment = Comment.all
 	end
