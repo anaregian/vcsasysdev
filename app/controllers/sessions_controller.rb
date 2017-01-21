@@ -12,12 +12,8 @@ class SessionsController < ApplicationController
 			redirect_to root_path
 
 		else
-			if  user && user.email_confirmed?
-				flash.now[:danger] = "Sign in unsuccessful"
-				render 'new'
-
-			elsif !user
-				flash.now[:danger] = "Wrong Username or Password"
+			if !user || !user.authenticate(params[:session][:password]) && user.email_confirmed?
+				flash.now[:danger] = "Wrong Email or Password"
 				render 'new'
 
 			else
