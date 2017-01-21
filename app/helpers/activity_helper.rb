@@ -11,6 +11,10 @@ module ActivityHelper
 		return activity.allocated_money - get_activity_amount_spent(activity)
 	end
 
+	def get_total_activity_allocated_money
+		@activities.sum(:allocated_money)
+	end
+
 	def get_total_activity_amt_spent
 		total = 0;
 		@activities.each do |a|

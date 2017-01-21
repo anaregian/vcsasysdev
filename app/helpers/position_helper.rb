@@ -11,6 +11,10 @@ module PositionHelper
 		return position.allocated_money - get_position_amount_spent(position)
 	end
 
+	def get_total_position_allocated_money
+		@positions.sum(:allocated_money)
+	end
+
 	def get_total_position_amt_spent
 		total = 0;
 		@positions.each do |p|

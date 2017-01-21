@@ -28,7 +28,7 @@
 <table class="table table-condensed bg-white">
 	<tr>
 		<td class="col-md-2"><b>Total</b></td>
-		<td class="col-md-2"><%= number_to_currency(@incomes.sum(:amount)) %></td>
+		<td class="col-md-2"><%= number_to_currency(get_total_income) %></td>
 		<td class="col-md-2"></td>
 	</tr>
 </table>

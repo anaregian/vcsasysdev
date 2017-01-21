@@ -56,7 +56,7 @@
 	<table class="table table-condensed bg-white">
 		<tr>
 			<td class="col-md-2"><b>Total</b></td>
-		    <td class="col-md-2"><%= number_to_currency(@positions.sum(:allocated_money)) %></td>
+		    <td class="col-md-2"><%= number_to_currency(get_total_position_allocated_money) %></td>
 			<td class="col-md-2"><%= number_to_currency(get_total_position_amt_spent) %></td>
 			<td class="col-md-2"><%= number_to_currency(get_total_position_amt_left) %></td>
 			<td class="col-md-2"></td>
