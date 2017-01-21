@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:edit, :update, :show, :destroy]
 	before_action :require_user, except: [:new, :create , :confirm_email]
 	before_action :require_same_user, only: [:edit, :update, :destroy]
+	before_action :require_new_user, only: [:new]
 
 	def index
 		@users = User.search_user(params[:search])
@@ -94,8 +95,15 @@ class UsersController < ApplicationController
 		else
 			return true
 
+		end
+
 	end
 
+	def require_new_user
+		if !current_user.blank?
+			flash[:danger] = "You cannot access this page while logged in."
+			redirect_to root_path
 		end
+	end
 
 end
