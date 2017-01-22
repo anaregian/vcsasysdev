@@ -8,12 +8,14 @@
 </div>
 <table class="table table-condensed bg-white sortable">
 	<tr>
+		<th>Creator</th>
 		<th>Date</th>
 		<th>Description</th>
 	</tr>
 	<!--Goes through each row in the DB and displays them in the table-->
 	<% @comment.each do |i| %>
 	<tr>
+		<td><%= i.username %></td>
 		<td><%= i.updated_at.localtime.to_formatted_s(:long) %></td>
 		<td><%= i.description %></td>
 		<td><%= link_to 'Edit', edit_comment_path(i), class: "btn btn-warning btn-xs" %>
