@@ -33,7 +33,10 @@ class CommentsController < ApplicationController
 	end
 
 	def update
-		if @comment.update(comment_params)
+		if current_user.admin != true && current_user.username != @comment.username
+			flash[:danger] = "User must be the creator in order to edit the comment"
+			redirect_to comments_path
+		elsif @comment.update(comment_params)
 			flash[:success] = "Comment updated"
 			redirect_to comment_path(@comment)
 		else
@@ -42,9 +45,14 @@ class CommentsController < ApplicationController
 	end
 
 	def destroy
-		@comment.destroy
-		flash[:danger] = "Comment was deleted"
-		redirect_to comments_path
+		if current_user.admin != true && current_user.username != @comment.username
+			flash[:danger] = "User must be the creator in order to delete the comment"
+			redirect_to comments_path
+		else
+			@comment.destroy
+			flash[:danger] = "Comment was deleted"
+			redirect_to comments_path
+		end
 	end
 
 	private
