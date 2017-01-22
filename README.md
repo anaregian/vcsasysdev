@@ -1,46 +1,10 @@
 # README
 # This file determines what is needed to accomplish the project
 
-* Add Positions table DONE
+* Break the site
 
-* Enable CRUD for Positions DONE
+* Fix the remaining bugs
 
-* Create views for Positions DONE
+* Update the VCSA with our progress
 
-* Add Activities table DONE
-
-* Enable CRUD for Activities DONE
-
-* Create views for Activities DONE
-
-* Add Components table DONE
-
-* Enable CRUD for Components DONE
-
-* Create views for Components DONE
-
-* Add Transactions table DONE**
-
-* Enable CRUD for Transactions DONE**
-
-* Create views for Transactions DONE**
-
-* Add Users table DONE
-
-* Enable CRUD for Users DONE
-
-* Create views for Users DONE
-
-* Add login functionality DONE
-
-* Add search functionality DONE***
-
-* Add sorting functionality DONE
-
-* Add printing functionality DONE
-
-* Add The logic DONE
-
-** Only Income is done, Not sure how to implement spendings portion... Consult Emerson
-
-*** Can only search by name on the index pages of Position, Activity and Component
+* Collect Money $$$$$$$$$$$$$$

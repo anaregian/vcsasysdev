@@ -1,3 +1,4 @@
+
 module EstimateHelper
 	def get_estimate
 		if Estimation.first == nil

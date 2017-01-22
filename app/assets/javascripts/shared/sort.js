@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  (function vendorTableSorter(){ 
+  (function vendorTableSorter(){
     /*
   SortTable
   version 2

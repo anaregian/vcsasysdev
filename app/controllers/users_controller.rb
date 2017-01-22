@@ -1,27 +1,44 @@
 class UsersController < ApplicationController
+	include CodeHelper
 
 	before_action :set_user, only: [:edit, :update, :show, :destroy]
-	before_action :require_user, except: [:new, :create]
+	before_action :require_user, except: [:new, :create , :confirm_email]
 	before_action :require_same_user, only: [:edit, :update, :destroy]
+	before_action :require_new_user, only: [:new]
 
 	def index
-		@users = User.search_user(params[:search])	
+		@users = User.search_user(params[:search])
 	end
-	
+
 	def new
-			@user = User.new
+		@user = User.new
 	end
 
 	def create
-			@user = User.new(user_params)
-			if @user.save
-				session[:user_id] = @user.id
-				flash[:success] = "sign up successful"
-				redirect_to root_path
-			else
-				render 'new'
-			end
+		@user = User.new(user_params)
+		if @user.save && verify_code
+			UserMailer.registration_confirmation(@user).deliver
+			flash[:success] = "Registration completed! Please confirm your email address."
+			return redirect_to root_path
+		else
+			render 'new'
+		end
+
 	end
+
+	def confirm_email
+		user = User.find_by_confirm_token(params[:id])
+		if user
+			user.email_activate
+			flash[:success] = "Welcome to the V.C.S.A. budget system. Your account has now been confirmed."
+
+		else
+			flash[:danger] = "Error: User has already confirmed this account or user does not exist."
+
+		end
+		return redirect_to root_path
+	end
+
 
 	def edit
 
@@ -31,7 +48,7 @@ class UsersController < ApplicationController
 	def update
 		if @user.update(user_params)
 			flash[:success] = "user updated"
-			redirect_to user_path(@user)
+			redirect_to users_path
 		else
 			render 'edit'
 		end
@@ -46,7 +63,7 @@ class UsersController < ApplicationController
 		@user.destroy
 		session[:user_id] = nil
 		flash[:danger] = "The user was deleted"
-		redirect_to users_path
+		redirect_to root_path
 	end
 	# Private methods
 	private
@@ -58,7 +75,7 @@ class UsersController < ApplicationController
 
 	# Assigns the parameters entered while creating or editing a user
 	def user_params
-		params.require(:user).permit(:username, :fname, :lname, :email, :password, :admin)
+		params.require(:user).permit(:username, :fname, :lname, :email, :password, :admin, :admin_code)
 	end
 
 	def require_same_user
@@ -67,4 +84,26 @@ class UsersController < ApplicationController
 			redirect_to root_path
 		end
 	end
+
+
+	def verify_code
+		if @user.admin_code != get_code
+		 	flash[:danger] = "Incorrect Admin code, user not created"
+		 	@user.destroy
+		 	session[:user_id] = nil
+		 	return false
+		else
+			return true
+
+		end
+
+	end
+
+	def require_new_user
+		if !current_user.blank?
+			flash[:danger] = "You cannot access this page while logged in."
+			redirect_to root_path
+		end
+	end
+
 end

@@ -1,12 +1,19 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Activities") do |sheet|
-  title = wb.styles.add_style(:bg_color => "EAEAEA", :fg_color=>"#FF000000")
+  title = wb.styles.add_style(:bg_color => "C0CAD8", :fg_color=>"#FF000000")
+  total = wb.styles.add_style(:bg_color => "97A0AF", :fg_color=>"#FF000000")
+  wrap_text = wb.styles.add_style alignment: {wrap_text: true}
   sheet.add_row(%w{Activity Allocated_Money Amount_Spent Amount_Left Host}, :style=>title)
   @activities.each do |activity|
     sheet.add_row [activity.activity_name,
-                  activity.allocated_money,
+                  number_to_currency(activity.allocated_money),
                   number_to_currency(get_activity_amount_spent(activity)),
                   number_to_currency(get_activity_amount_left(activity)),
-                  activity.position.name]
+                  activity.position.name], :style=>wrap_text
   end
+  sheet.add_row ["total",
+                number_to_currency(get_total_activity_allocated_money),
+                number_to_currency(get_total_activity_amt_spent),
+                number_to_currency(get_total_activity_amt_left),
+                " "], :style=>total
 end

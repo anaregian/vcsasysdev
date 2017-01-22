@@ -1,11 +1,17 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "Components") do |sheet|
-  title = wb.styles.add_style(:bg_color => "EAEAEA", :fg_color=>"#FF000000")
+  title = wb.styles.add_style(:bg_color => "C0CAD8", :fg_color=>"#FF000000")
+  total = wb.styles.add_style(:bg_color => "97A0AF", :fg_color=>"#FF000000")
+  wrap_text = wb.styles.add_style alignment: {wrap_text: true}
   sheet.add_row(%w{Component Description Cost Activity}, :style=>title)
   @components.each do |component|
     sheet.add_row [component.component_name,
                   component.description,
                   number_to_currency(component.cost),
-                  component.activity.activity_name]
+                  component.activity.activity_name], :style=>wrap_text
   end
+  sheet.add_row ["total",
+                " ",
+                number_to_currency(get_total_component_cost),
+                " "], :style=>total
 end

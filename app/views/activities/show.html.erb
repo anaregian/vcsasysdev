@@ -42,108 +42,20 @@
   <!--Goes through each row in the DB and displays them in the table-->
   <% @components.each do |c| %>
       <tr>
-        <td><%= link_to c.component_name, component_path(c) %></td>
-        <td><%= truncate(c.description, length: 30) %></td>
-        <td><%= number_to_currency(c.cost) %></td>
-        <td class="hidden-print"><%= link_to 'Edit', edit_component_path(c), class: "btn btn-warning btn-xs" %>
+        <td class="col-md-2"><%= link_to c.component_name, component_path(c) %></td>
+        <td class="col-md-2"><%= truncate(c.description, length: 30) %></td>
+        <td class="col-md-2"><%= number_to_currency(c.cost) %></td>
+        <td class="hidden-print col-md-2"><%= link_to 'Edit', edit_component_path(c), class: "btn btn-warning btn-xs" %>
           <%= link_to 'Delete', component_path(c), method: :delete, data: {confirm: "Delete component?"}, class: "btn btn-danger btn-xs" %></td>
       </tr>
   <% end %>
 </table>
 
-
-
-<!--Chart script-->
-<script>
-
-
-  $(function () {
-
-    var gaugeOptions = {
-
-      chart: {
-        type: 'solidgauge'
-      },
-
-      title: null,
-
-      pane: {
-        center: ['50%', '85%'],
-        size: '140%',
-        startAngle: -90,
-        endAngle: 90,
-        background: {
-          backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-          innerRadius: '60%',
-          outerRadius: '100%',
-          shape: 'arc'
-        }
-      },
-
-      tooltip: {
-        enabled: false
-      },
-
-      // the value axis
-      yAxis: {
-        stops: [
-          [0.1, '#55BF3B'], // green
-          [0.5, '#DDDF0D'], // yellow
-          [0.9, '#DF5353'] // red
-        ],
-        lineWidth: 0,
-        minorTickInterval: null,
-        tickAmount: 2,
-        title: {
-          y: -70
-        },
-        labels: {
-          y: 16
-        }
-      },
-
-      plotOptions: {
-        solidgauge: {
-          dataLabels: {
-            y: 5,
-            borderWidth: 0,
-            useHTML: true
-          }
-        }
-      }
-    };
-
-    // The speed gauge
-    var chartSpeed = Highcharts.chart('chartContainer', Highcharts.merge(gaugeOptions, {
-      yAxis: {
-        min: <%=get_activity_amount_spent(@activity) > 0 ? 0: get_activity_amount_spent(@activity) %>,
-        max: <%=get_activity_amount_spent(@activity) + get_activity_amount_left(@activity)%>,
-        title: {
-          text: 'Amount Spent'
-        }
-      },
-
-      credits: {
-        enabled: false
-      },
-
-      series: [{
-        name: 'Amount Spent',
-        data: [<%=get_activity_amount_spent(@activity) %>],
-        dataLabels: {
-          format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-          ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-          '<span style="font-size:12px;color:silver">$</span></div>'
-        },
-        tooltip: {
-          valueSuffix: '$'
-        }
-      }]
-
-    }));
-
-    setInterval(<%=get_activity_amount_spent(@activity) %>, <%=get_activity_amount_spent(@activity) + get_activity_amount_left(@activity)%>)
-
-  });
-
-</script>
+<table class="table table-condensed bg-white">
+  <tr>
+    <td class="col-md-2"><b>Total</b></td>
+    <td class="col-md-2"></td>
+    <td class="col-md-2"><%= number_to_currency(@components.sum(:cost)) %></td>
+    <td class="col-md-2"></td>
+      </tr>
+</table>

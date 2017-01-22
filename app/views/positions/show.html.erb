@@ -32,16 +32,27 @@
 		<th>Amount Spent</th>
 		<th>Amount Left</th>
 		<th class="hidden-print">Actions</th>
+
 	</tr>
 	<!--Goes through each row in the DB and displays them in the table-->
 	<% @activities.each do |a| %>
 	<tr>
-		<td><%= link_to a.activity_name, activity_path(a) %></td>
-		<td><%= number_to_currency(a.allocated_money) %></td>
-		<td><%= number_to_currency(get_activity_amount_spent(a)) %></td>
-		<td><%= number_to_currency(get_activity_amount_left(a)) %></td>
-		<td class="hidden-print"><%= link_to 'Edit', edit_activity_path(a), class: "btn btn-warning btn-xs" %>
+		<td class="col-md-2"><%= link_to a.activity_name, activity_path(a) %></td>
+		<td class="col-md-2"><%= number_to_currency(a.allocated_money) %></td>
+		<td class="col-md-2"><%= number_to_currency(get_activity_amount_spent(a)) %></td>
+		<td class="col-md-2"><%= number_to_currency(get_activity_amount_left(a)) %></td>
+		<td class="hidden-print col-md-2"><%= link_to 'Edit', edit_activity_path(a), class: "btn btn-warning btn-xs" %>
 			<%= link_to 'Delete', activity_path(a), method: :delete, data: {confirm: "Delete activity and all its components?"}, class: "btn btn-danger btn-xs" %></td>
 	</tr>
 	<% end %>
+</table>
+
+<table class="table table-condensed bg-white">
+	<tr>
+		<td class="col-md-2"><b>Total</b></td>
+		<td class="col-md-2"><%= number_to_currency(@activities.sum(:allocated_money)) %></td>
+		<td class="col-md-2"><%= number_to_currency(get_total_activity_amt_spent) %></td>
+		<td class="col-md-2"><%= number_to_currency(get_total_activity_amt_left) %></td>
+		<td class="col-md-2"></td>
+		<td class="col-md-2"></td>
 </table>
