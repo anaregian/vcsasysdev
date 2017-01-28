@@ -61,7 +61,9 @@ class UsersController < ApplicationController
 
 	def destroy
 		@user.destroy
-		session[:user_id] = nil
+		if !current_user.admin?
+			session[:user_id] = nil
+		end
 		flash[:danger] = "The user was deleted"
 		redirect_to root_path
 	end
