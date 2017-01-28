@@ -19,7 +19,7 @@
 				<%= p.text_field :lname, class: "form-control", placeholder: "Last Name" %>
 			</div>
 		</div>
-		<% if params[:action] == "new" %>
+		<% if params[:action] != "edit" && params[:action] != "update" %>
 		<div class="form-group">
 			<div class="col-md-8 col-md-offset-2">
 				<%= p.email_field :email, class: "form-control", placeholder: "E-mail address" %>
@@ -30,12 +30,12 @@
 				<%= p.password_field :password, class: "form-control", placeholder: "Password" %>
 			</div>
 		</div>
-
 		<div class="form-group">
 			<div class="col-md-8 col-md-offset-2">
 			<%= p.text_field :admin_code, class: "form-control" ,placeholder: "Admin Code"%>
 			</div>
 		</div>
+
 		<% end %>
 		<% if current_user && current_user.admin? %>
 		<div class="form-group">
