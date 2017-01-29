@@ -4,6 +4,7 @@ class MemosController < ApplicationController
 
 	# Calls the set_memo method before executing edit, update, show or destroy actions
 	before_action :set_memo, only: [:edit, :update, :show, :destroy]
+	before_action :require_user
 
 	def index
 		@memo = Memo.where(:user_id => current_user.id)
