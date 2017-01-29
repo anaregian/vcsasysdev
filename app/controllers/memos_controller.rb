@@ -26,14 +26,24 @@ class MemosController < ApplicationController
 	end
 
 	def show
-		
+		if current_user.admin != true and current_user.id != @memo.user_id
+            flash[:danger] = "You cannot edit or delete other people's accounts"
+            redirect_to root_path
+        end
 	end
 
 	def edit
-		
+		if current_user.admin != true and current_user.id != @memo.user_id
+            flash[:danger] = "You cannot edit or delete other people's accounts"
+            redirect_to root_path
+        
+    	else
+    		render 'edit'
+    	end
 	end
 
 	def update
+
 		if @memo.update(memo_params)
 			flash[:success] = "Memo updated"
 			redirect_to memo_path(@memo)
