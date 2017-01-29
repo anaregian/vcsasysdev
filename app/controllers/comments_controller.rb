@@ -29,14 +29,16 @@ class CommentsController < ApplicationController
 	end
 
 	def edit
-		
-	end
-
-	def update
 		if current_user.admin != true && current_user.username != @comment.username
 			flash[:danger] = "User must be the creator in order to edit the comment"
 			redirect_to comments_path
-		elsif @comment.update(comment_params)
+		else
+			render 'edit'
+		end
+	end
+
+	def update
+		if @comment.update(comment_params)
 			flash[:success] = "Comment updated"
 			redirect_to comment_path(@comment)
 		else
