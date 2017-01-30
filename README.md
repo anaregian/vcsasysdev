@@ -1,10 +1,8 @@
 # README
 # This file determines what is needed to accomplish the project
 
-* Break the site
+* Add password confirmation before deleting user
 
-* Fix the remaining bugs
+* Encrypt the admin
 
-* Update the VCSA with our progress
-
-* Collect Money $$$$$$$$$$$$$$
+* Add miscellaneous spending page
