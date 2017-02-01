@@ -22,7 +22,7 @@
 		</div>
 		<div class="form-group">
 			<div class="col-md-8 col-md-offset-2 dropdown-toggle">
-				<%= a.collection_select :activity_id, Activity.all, :id, :activity_name, {prompt: "Activity", :selected => @component.activity_id.to_i}, {class: "btn btn-default dropdown-toggle"}%>
+				<%= a.collection_select :activity_id, Activity.all, :id, :activity_name, {:include_blank => "-none-"}, {class: "btn btn-default dropdown-toggle"}%>
 			</div>
 		</div>
 		<div class="form-group">

@@ -13,6 +13,12 @@ module BudgetHelper
 		pos.each do |p|
 			total += get_position_amount_spent(p)
 		end
+		comp = Component.all
+		comp.each do |c|
+			if c.activity == nil
+				total += c.cost
+			end
+		end
 		return total
 	end
 

@@ -3,6 +3,4 @@
 
 * Add password confirmation before deleting user
 
-* Encrypt the admin
-
-* Add miscellaneous spending page
+* Encrypt the admin code
