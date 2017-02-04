@@ -50,6 +50,10 @@ class ComponentsController < ApplicationController
 		redirect_to components_path
 	end
 
+	def miscellaneous
+		@components = Component.where("activity_id IS NULL")
+	end
+
 	# Private methods
 	private
 	# Sets the component variable to the selected component

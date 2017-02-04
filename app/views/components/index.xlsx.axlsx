@@ -5,10 +5,16 @@ wb.add_worksheet(name: "Components") do |sheet|
   wrap_text = wb.styles.add_style alignment: {wrap_text: true}
   sheet.add_row(%w{Component Description Cost Activity}, :style=>title)
   @components.each do |component|
+    if component.activity != nil
     sheet.add_row [component.component_name,
                   component.description,
                   number_to_currency(component.cost),
                   component.activity.activity_name], :style=>wrap_text
+    else
+    sheet.add_row [component.component_name,
+                  component.description,
+                  number_to_currency(component.cost)]
+    end
   end
   sheet.add_row ["total",
                 " ",

@@ -6,7 +6,11 @@ Rails.application.routes.draw do
 	# Initializes all the routes for activities
 	resources :activities
 	# Initializes all the routes for components
-	resources :components
+	resources :components do
+  	collection do
+    	get 'miscellaneous'
+  	end
+	end
 	# Initializes all the routes for incomes
 	resources :incomes
 	# Initializes all the routes for estimations
@@ -19,7 +23,6 @@ Rails.application.routes.draw do
 	resources :memos
 	# Initializes all the routes for comments
 	resources :comments
-
 	# Initializes all the routes for users
 	get 'signup', to: 'users#new'
 	resources :users , except: [:new] do
@@ -27,7 +30,6 @@ Rails.application.routes.draw do
 			get :confirm_email
 		end
 	end
-
 	# Initializes all the routes for the user sessions (log in, log out)
 	get 'login', to: 'sessions#new'
 	post 'login', to: 'sessions#create'
