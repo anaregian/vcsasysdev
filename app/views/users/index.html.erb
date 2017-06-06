@@ -19,7 +19,7 @@
 		<td><%= link_to u.fname + " " + u.lname, user_path(u) %></td>
 		<td><%= get_access_level(u) %></td>
 			<td class="hidden-print">
-			<% if logged_in? && (current_user == u || current_user.admin?) %>
+			<% if logged_in? && current_user.admin? %>
 				<%= link_to 'Edit', edit_user_path(u), class: "btn btn-warning btn-xs" %>
 				<%= link_to 'Delete', user_path(u), method: :delete, data: {confirm: "Delete Member?"}, class: "btn btn-danger btn-xs" %>
 			<% end %>
