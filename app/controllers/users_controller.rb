@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save && verify_code
 			UserMailer.registration_confirmation(@user).deliver
-			flash[:success] = "Registration completed! Please confirm your email address. Note: If you can't find the email sent try checking your junk mail"
+			flash[:success] = "Registration completed!"
 			return redirect_to root_path
 		else
 			render 'new'
